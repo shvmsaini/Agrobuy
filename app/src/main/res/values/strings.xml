@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Agrobuy</string>
+    <string name="agrobuy">AGROBUY</string>
+    <string name="tagline">FACILITATING GLOBAL TRADE</string>
+    <string name="subtagline"><![CDATA[Buyer Network, Easy Financing & Seamless Delivery]]></string>
+    <string name="signuptext">Don\'t have an account? Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login_back">Already have an account? Login</string>
+    <string name="create_account">Create an account</string>
+
+</resources>
