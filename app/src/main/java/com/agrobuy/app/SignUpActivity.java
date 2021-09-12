@@ -7,6 +7,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,9 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.agrobuy.app.databinding.SignupLayoutBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -29,6 +27,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         signupLayout = SignupLayoutBinding.inflate(getLayoutInflater()); // view binding
         setContentView(signupLayout.getRoot());
+        auth = FirebaseAuth.getInstance(); // getting firebase auth
+
 
         // back to login
         SpannableString loginSpan = new SpannableString(signupLayout.loginBack.getText());
@@ -41,8 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupLayout.loginBack.setText(loginSpan);
         signupLayout.loginBack.setMovementMethod(LinkMovementMethod.getInstance());
 
-
-        // singing up
+        // signing up
         signupLayout.signupButton.setOnClickListener(v -> {
             String email = signupLayout.emailForSignup.getText().toString();
             String pass = signupLayout.passwordForSignup.getText().toString();
@@ -68,18 +67,17 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 else{
                     auth.createUserWithEmailAndPassword(email,pass)
-                            .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                    if (!task.isSuccessful()) {
-                                        Toast.makeText(SignUpActivity.this, "ERROR",Toast.LENGTH_LONG).show();
-                                    }
-                                    else {
-                                        startActivity(new Intent(SignUpActivity.this, LoggedInActivity.class));
-                                        finish();
-                                    }
+                            .addOnCompleteListener(SignUpActivity.this, task -> {
+                                if (!task.isSuccessful()) {
+                                    Log.d("AgroBuy","User creation failed",task.getException());
+                                    Toast.makeText(SignUpActivity.this, "ERROR",Toast.LENGTH_LONG).show();
                                 }
-                            });}
+                                else {
+                                    startActivity(new Intent(SignUpActivity.this, LoggedInActivity.class));
+                                    finish();
+                                }
+                            });
+                }
             }
             else{
                 Toast.makeText(this, "Password doesn't match!", Toast.LENGTH_SHORT).show();

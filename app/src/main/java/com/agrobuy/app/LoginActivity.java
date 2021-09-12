@@ -6,6 +6,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,11 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class LoginActivity extends AppCompatActivity {
     public TextView signup;
     public Button loginButton;
     public TextView email;
     public TextView password;
+    private FirebaseAuth mAuth;
     private static final int TIME_DELAY = 2000;
     private static long back_pressed;
     @Override
@@ -27,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
         signup = findViewById(R.id.signup);
+
+        // For sign up link
         SpannableString signupSpan = new SpannableString(signup.getText().toString());
         signupSpan.setSpan(new ClickableSpan() {
             @Override
@@ -41,8 +48,20 @@ public class LoginActivity extends AppCompatActivity {
         // Login Button
         loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(view -> {
-            Toast.makeText(LoginActivity.this, "Button CLICKED", Toast.LENGTH_SHORT).show();
-
+            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(LoginActivity.class.getName(), "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+//                                updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(LoginActivity.class.getName(), "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+//                                updateUI(null);
+                        }
+                    });
         });
     }
 
