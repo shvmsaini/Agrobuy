@@ -3,11 +3,28 @@
     <string name="agrobuy">AGROBUY</string>
     <string name="tagline">FACILITATING GLOBAL TRADE</string>
     <string name="subtagline"><![CDATA[Buyer Network, Easy Financing & Seamless Delivery]]></string>
-    <string name="signuptext">Don\'t have an account? Sign Up</string>
+    <string name="signup_text">Don\'t have an account? Sign Up</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="login_back">Already have an account? Login</string>
     <string name="create_account">Create an account</string>
+    <!-- for navigation drawer -->
+    <string name="account_settings">Account Settings</string>
+    <string name="my_products">My Products</string>
+    <string name="contact_support">Contact Support</string>
+    <string name="sign_out">Sign out</string>
+    <!-- for gridlayout -->
+    <string name="exports_guide">Exports Guide</string>
+    <string name="delivery_partners">Delivery Partners</string>
+    <string name="export_financing">Export Financing</string>
+    <string name="buyer_network">Buyer Network</string>
+    <string name="loggedin_header">TRUST AGROBUY TO START AND SCALE YOUR PRODUCTS</string>
+    <string name="loggedin_subheader">Access your personal buyer network, collateral free export finance, and reliable freight forwarders</string>
+    <string name="success_message">You\'re all set. \n \n Our Financing experts will get in touch with you to onboard you quickly. \n \n Happy Trading!</string>
+    <string name="finance_subheader">Explore our short term trade Financing Upload the invoice and apply instantly</string>
+    <string name="low_cost_finance">Low Cost Finance</string>
+    <string name="instant">Instant</string>
+    <string name="collateral_free">Collateral Free</string>
 
 </resources>
