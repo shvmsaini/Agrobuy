@@ -17,24 +17,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         next = findViewById(R.id.next);
 
-        next.setOnClickListener(view -> {
-            // Check if a user is already logged in
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            FirebaseAuth.AuthStateListener authStateListener = firebaseAuth1 -> {
-                FirebaseUser firebaseUser = firebaseAuth1.getCurrentUser();
-                if (firebaseUser == null) {
+
+        // Check if a user is already logged in
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth.AuthStateListener authStateListener = firebaseAuth1 -> {
+            FirebaseUser firebaseUser = firebaseAuth1.getCurrentUser();
+            if (firebaseUser == null) {
+                next.setOnClickListener(view -> {
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
-                }
-                if (firebaseUser != null) {
-                    Intent intent = new Intent(MainActivity.this, LoggedInActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            };
-            firebaseAuth.addAuthStateListener(authStateListener);
-        });
+                });
+
+            }
+            if (firebaseUser != null) {
+                Intent intent = new Intent(MainActivity.this, LoggedInActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        };
+        firebaseAuth.addAuthStateListener(authStateListener);
+        }
     }
 
-}
