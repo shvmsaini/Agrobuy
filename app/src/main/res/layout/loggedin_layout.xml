@@ -6,180 +6,220 @@
     android:layout_height="match_parent"
     android:theme="@style/CardView.Dark">
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:openDrawer="start">
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
-
-            <com.google.android.material.appbar.AppBarLayout
-                style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true">
-
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/topAppBar"
-                    style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@android:color/transparent"
-                    android:elevation="0dp"
-                    app:navigationIcon="@drawable/ic_baseline_menu_24"
-                    app:title="@string/app_name" />
-            </com.google.android.material.appbar.AppBarLayout>
+        <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawerLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:openDrawer="start">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                android:background="@color/teal_200"
-                android:padding="16dp">
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true">
 
-                <TextView
-                    android:id="@+id/loggedin_header"
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:gravity="center_horizontal"
-                    android:text="@string/loggedin_header"
-                    android:textSize="24dp"
-                    app:layout_anchor="@+id/constraintLayout"
-                    app:layout_anchorGravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"
+                    android:fitsSystemWindows="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/topAppBar"
+                        style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@android:color/transparent"
+                        android:elevation="0dp"
+                        app:navigationIcon="@drawable/ic_baseline_menu_24"
+                        app:title="@string/app_name" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:background="@color/teal_200"
+                    android:padding="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="0dp">
+
+                    <TextView
+                        android:id="@+id/loggedin_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/loggedin_header"
+                        android:textSize="24dp"
+                        app:layout_anchor="@+id/constraintLayout"
+                        app:layout_anchorGravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="89dp"
+                        android:layout_marginEnd="16dp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/loggedin_subheader"
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.19" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/user_name"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="89dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="center_horizontal"
-                    android:text="@string/loggedin_subheader"
-                    android:textSize="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Hi!"
+                    android:textColor="@color/teal_700"
+                    android:textSize="24dp"
+                    app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+                <GridLayout
+                    android:id="@+id/gridLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:alignmentMode="alignMargins"
+                    android:columnCount="2"
+                    android:padding="8dp"
+                    android:rowCount="2"
+                    android:useDefaultMargins="true"
+                    app:layout_constraintBottom_toTopOf="@+id/loggedin_footer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.19" />
+                    app:layout_constraintVertical_bias="0.76">
+
+                    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/buyer_network"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:padding="8dp"
+                        card_view:cardBackgroundColor="@color/teal_700"
+                        card_view:cardCornerRadius="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/buyer_network"
+                            android:textColor="@color/white" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/export_financing"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        card_view:cardBackgroundColor="@color/teal_700"
+                        card_view:cardCornerRadius="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/export_financing"
+                            android:textColor="@color/white" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/delivery_partners"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        card_view:cardBackgroundColor="@color/teal_700"
+                        card_view:cardCornerRadius="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/delivery_partners"
+                            android:textColor="@color/white" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/exports_guide"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        card_view:cardBackgroundColor="@color/teal_700"
+                        card_view:cardCornerRadius="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="@string/exports_guide"
+                            android:textColor="@color/white" />
+                    </androidx.cardview.widget.CardView>
+                </GridLayout>
+
+                <Button
+                    android:id="@+id/button_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="72dp"
+                    android:text="@string/refer"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/loggedin_footer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:text="@string/loggedin_footer"
+                    app:layout_anchorGravity="bottom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.483"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_id"
+                    app:layout_constraintVertical_bias="0.90" />
+
+                <!-- Screen content -->
+                <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_gravity="center"
-                android:layout_marginBottom="175dp"
-                android:gravity="center"
-                android:textSize="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/teal_700"
-            />
-            <GridLayout
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigation_drawer"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:alignmentMode="alignMargins"
-                android:columnCount="2"
-                android:padding="8dp"
-                android:rowCount="2"
-                android:useDefaultMargins="true"
-                android:layout_marginTop="200dp"
-                >
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                app:menu="@menu/navigation_menu" />
+        </androidx.drawerlayout.widget.DrawerLayout>
 
-                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/buyer_network"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:padding="8dp"
-                    card_view:cardBackgroundColor="@color/teal_700"
-                    card_view:cardCornerRadius="8dp">
-
-                    <TextView
-                        android:textColor="@color/white"
-                        android:gravity="center"
-                        android:text="@string/buyer_network"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/export_financing"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    card_view:cardBackgroundColor="@color/teal_700"
-                    card_view:cardCornerRadius="8dp">
-
-                    <TextView
-                        android:textColor="@color/white"
-                        android:gravity="center"
-                        android:text="@string/export_financing"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/delivery_partners"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    card_view:cardBackgroundColor="@color/teal_700"
-                    card_view:cardCornerRadius="8dp">
-
-                    <TextView
-                        android:textColor="@color/white"
-                        android:gravity="center"
-                        android:text="@string/delivery_partners"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/exports_guide"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    card_view:cardBackgroundColor="@color/teal_700"
-                    card_view:cardCornerRadius="8dp">
-
-                    <TextView
-                        android:textColor="@color/white"
-                        android:gravity="center"
-                        android:text="@string/exports_guide"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </androidx.cardview.widget.CardView>
-            </GridLayout>
-
-
-
-
-            <!-- Screen content -->
-            <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_drawer"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:menu="@menu/navigation_menu" />
-    </androidx.drawerlayout.widget.DrawerLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

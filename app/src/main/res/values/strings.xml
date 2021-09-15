@@ -26,5 +26,9 @@
     <string name="low_cost_finance">Low Cost Finance</string>
     <string name="instant">Instant</string>
     <string name="collateral_free">Collateral Free</string>
+    <string name="trade_finance_footer_message">For any queries regarding Financing, please Call/WhatsApp at +918105109480</string>
+    <string name="apply">Apply</string>
+    <string name="loggedin_footer">Need more assistance? Call us at +918105109480 \n We are available 24x7!</string>
+    <string name="refer">Refer and avail cashback</string>
 
 </resources>

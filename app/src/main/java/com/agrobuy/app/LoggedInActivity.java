@@ -1,11 +1,17 @@
 package com.agrobuy.app;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.Gravity;
-import android.widget.ImageButton;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,8 +36,8 @@ public class LoggedInActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currUser = mAuth.getCurrentUser();
         assert currUser != null;
-        DatabaseReference myRef = database.getReference(currUser.getUid());
-        myRef.child("name").get().addOnCompleteListener(task -> {
+        DatabaseReference myRef = database.getReference("users");
+        myRef.child(currUser.getUid()).child("name").get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data", task.getException());
             }
@@ -75,10 +81,22 @@ public class LoggedInActivity extends AppCompatActivity {
             }
         });
         loggedinLayout.exportFinancing.setOnClickListener(v->{
-            setContentView(R.layout.trade_finance);
-            ImageButton back = findViewById(R.id.back_button);
-            back.setOnClickListener(view -> setContentView(loggedinLayout.getRoot()));
+          Intent i = new Intent(this, TradeFinanceActivity.class);
+          startActivity(i);
         });
+        // calling link
+        SpannableString callSpan = new SpannableString(
+                loggedinLayout.loggedinFooter.getText().toString());
+        callSpan.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:"+ "8105109480"));
+                startActivity(callIntent);
+            }
+        },33,46, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        loggedinLayout.loggedinFooter.setText(callSpan);
+        loggedinLayout.loggedinFooter.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
 

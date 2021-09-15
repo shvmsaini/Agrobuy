@@ -47,11 +47,18 @@ public class SignUpActivity extends AppCompatActivity {
 
         // signing up
         signupLayout.signupButton.setOnClickListener(v -> {
+            String name = signupLayout.nameForSignup.getText().toString();
             String email = signupLayout.emailForSignup.getText().toString();
             String pass = signupLayout.passwordForSignup.getText().toString();
             String confirmPass = signupLayout.confirmPasswordForSignup.getText().toString();
             if(pass.equals(confirmPass)){
+                if(TextUtils.isEmpty(name)){
+                    signupLayout.nameForSignup.requestFocus();
+                    Toast.makeText(getApplicationContext(),"Please enter your name",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(TextUtils.isEmpty(email)){
+                    signupLayout.emailForSignup.requestFocus();
                     Toast.makeText(getApplicationContext(),"Please enter your E-mail address",Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -80,8 +87,8 @@ public class SignUpActivity extends AppCompatActivity {
 //
                                     FirebaseUser curruser = auth.getCurrentUser();
                                     assert curruser != null;
-                                    DatabaseReference myRef = database.getReference(curruser.getUid());
-                                    myRef.child("name").setValue(signupLayout.nameForSignup.getText().toString());
+                                    DatabaseReference myRef = database.getReference("users");
+                                    myRef.child(curruser.getUid()).child("name").setValue(signupLayout.nameForSignup.getText().toString());
                                     startActivity(new Intent(SignUpActivity.this, LoggedInActivity.class));
                                     finish();
                                 }
