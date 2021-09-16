@@ -178,8 +178,9 @@
                 android:layout_gravity="end"
                 android:width="200dp"
                 android:background="@drawable/input_background"
-                android:hint="Enter in USD/INR"
+                android:hint="Enter in USD"
                 android:paddingStart="8dp"
+                android:inputType="numberDecimal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -242,6 +243,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
+
                 android:id="@+id/finance_type_spinner"
                 android:layout_width="200dp"
                 android:layout_height="32dp"

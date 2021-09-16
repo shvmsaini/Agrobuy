@@ -84,6 +84,12 @@ public class LoggedInActivity extends AppCompatActivity {
           Intent i = new Intent(this, TradeFinanceActivity.class);
           startActivity(i);
         });
+        loggedinLayout.buyerNetwork.setOnClickListener(v->{
+
+        });
+
+
+
         // calling link
         SpannableString callSpan = new SpannableString(
                 loggedinLayout.loggedinFooter.getText().toString());

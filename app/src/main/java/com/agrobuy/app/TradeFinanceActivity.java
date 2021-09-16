@@ -31,16 +31,16 @@ public class TradeFinanceActivity extends Activity {
     private DatabaseReference myRef = database.getReference();
     private String invoice_id="0";
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==requestCode){
-            Toast.makeText(getApplicationContext(), "Success! We will get back to you ASAP!", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "Failed! Please send email to complete", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(resultCode==requestCode){
+//            Toast.makeText(getApplicationContext(), "Success! We will get back to you ASAP!", Toast.LENGTH_SHORT).show();
+//        }
+//        else{
+//            Toast.makeText(getApplicationContext(), "Failed! Please send email to complete", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,18 +95,22 @@ public class TradeFinanceActivity extends Activity {
                         myRef.child("invoice_id").setValue(Integer.parseInt(invoice_id) + 1).addOnCompleteListener(task1 -> {
                             //putting everything in the database
                             myRef.child("applied").child(FirebaseAuth.getInstance().getUid()).updateChildren(item);
-                            Log.d(TradeFinanceActivity.class.getName(),"success, " + user);
+                            Log.d(TradeFinanceActivity.class.getName(),"success, " + item);
                             //opening email
-                            Intent email= new Intent(Intent.ACTION_SENDTO);
-                            email.setData(Uri.parse("mailto:yourEmail@gmail.com"));
-                            email.putExtra(Intent.EXTRA_SUBJECT, "Trade Finance");
-                            email.putExtra(Intent.EXTRA_TEXT, "Please send this mail and we will get back to you ASAP!" +
-                                    "\n\n\n\n\n" +
-                                    "<-- DON'T CHANGE THE LINES BELOW THIS -->\n"
-                                    + user);
-                            startActivityForResult(Intent.createChooser(email,"Choose an Email client:"),
-                                    800);
-
+                            //WARNING: Only Gmail with work
+                            Intent intent = new Intent (Intent.ACTION_SEND);
+                            intent.setType("message/rfc822");
+                            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"yourEmail@gmail.com"});
+                            intent.putExtra(Intent.EXTRA_SUBJECT, "Trade Finance");
+                            intent.putExtra(Intent.EXTRA_TEXT, "Please send this mail and we will get back to you ASAP!" +
+                                    "\n\n\n" +
+                                    "<--DON'T CHANGE THE LINES BELOW THIS-->\n"
+                                    + item);
+                            intent.setPackage("com.google.android.gm");
+                            if (intent.resolveActivity(getPackageManager())!=null)
+                                startActivity(intent);
+                            else
+                                Toast.makeText(this,"Failed! Gmail App is not installed",Toast.LENGTH_SHORT).show();
                         });
                     }
             );
