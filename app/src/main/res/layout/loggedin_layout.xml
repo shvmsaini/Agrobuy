@@ -45,7 +45,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="185dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/teal_200"
                     android:padding="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -57,8 +57,8 @@
                         android:id="@+id/loggedin_header"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:gravity="center_horizontal"
                         android:text="@string/loggedin_header"
                         android:textSize="24dp"
@@ -67,14 +67,15 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="89dp"
+                        android:layout_marginTop="80dp"
                         android:layout_marginEnd="16dp"
                         android:gravity="center_horizontal"
                         android:text="@string/loggedin_subheader"
@@ -164,7 +165,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/exports_guide"
+                        android:id="@+id/add_products"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         card_view:cardBackgroundColor="@color/teal_700"
@@ -174,22 +175,38 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="@string/exports_guide"
+                            android:text="@string/add_products"
                             android:textColor="@color/white" />
                     </androidx.cardview.widget.CardView>
                 </GridLayout>
 
                 <Button
-                    android:id="@+id/button_id"
+                    android:id="@+id/create_invoice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="72dp"
-                    android:text="@string/refer"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@string/create"
+                    app:layout_constraintBottom_toTopOf="@+id/loggedin_footer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/upload_invoice"
+                    app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/upload_invoice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="64dp"
+                    android:text="@string/upload"
+                    app:layout_constraintBottom_toTopOf="@+id/loggedin_footer"
+                    app:layout_constraintEnd_toStartOf="@+id/create_invoice"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
                     android:id="@+id/loggedin_footer"
@@ -198,14 +215,15 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
                     android:gravity="center"
+                    android:paddingStart="8dp"
                     android:text="@string/loggedin_footer"
                     app:layout_anchorGravity="bottom"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.483"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button_id"
-                    app:layout_constraintVertical_bias="0.90" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <!-- Screen content -->
                 <!-- Use app:layout_behavior="@string/appbar_scrolling_view_behavior" to fit below top app bar -->

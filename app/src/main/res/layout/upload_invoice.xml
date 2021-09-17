@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/upload_header"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:backgroundTint="@color/black"
+        android:padding="16dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/upload_invoice_header"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <EditText
+        android:id="@+id/upload_invoice_number"
+        android:layout_width="250dp"
+        android:layout_height="32dp"
+        android:background="@drawable/input_background"
+        android:ems="10"
+        android:hint="@string/invoice_number"
+        android:inputType="number"
+        android:paddingStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.060000002" />
+
+    <TextView
+        android:id="@+id/file_select"
+        android:layout_width="250dp"
+        android:layout_height="32dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/input_background"
+        android:gravity="center|start"
+        android:paddingStart="8dp"
+        android:text="@string/no_file"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_invoice_number"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <Button
+        android:id="@+id/browse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Browse"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/file_select"
+        app:layout_constraintVertical_bias="0.03" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:text="Upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/open_camera" />
+
+    <Button
+        android:id="@+id/open_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_baseline_camera_alt_24"
+        android:text="open camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/browse"
+        app:layout_constraintVertical_bias="0.244" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="or use camera"
+        app:layout_constraintBottom_toTopOf="@+id/open_camera"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/browse" />
+</androidx.constraintlayout.widget.ConstraintLayout>

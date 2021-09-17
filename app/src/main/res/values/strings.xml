@@ -15,7 +15,7 @@
     <string name="contact_support">Contact Support</string>
     <string name="sign_out">Sign out</string>
     <!-- for gridlayout -->
-    <string name="exports_guide">Exports Guide</string>
+    <string name="add_products">Add my products</string>
     <string name="delivery_partners">Delivery Partners</string>
     <string name="export_financing">Export Financing</string>
     <string name="buyer_network">Buyer Network</string>
@@ -29,6 +29,10 @@
     <string name="trade_finance_footer_message">For any queries regarding Financing, please Call/WhatsApp at +918105109480</string>
     <string name="apply">Apply</string>
     <string name="loggedin_footer">Need more assistance? Call us at +918105109480 \n We are available 24x7!</string>
-    <string name="refer">Refer and avail cashback</string>
+    <string name="create">Create invoice</string>
+    <string name="upload">Upload invoice</string>
+    <string name="invoice_number">Invoice Number</string>
+    <string name="no_file">No File Selected</string>
+    <string name="upload_invoice_header">Enter the Invoice number and Upload a invoice</string>
 
 </resources>

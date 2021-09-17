@@ -84,11 +84,14 @@ public class SignUpActivity extends AppCompatActivity {
                                     Toast.makeText(SignUpActivity.this, "ERROR",Toast.LENGTH_LONG).show();
                                 }
                                 else {
-//
                                     FirebaseUser curruser = auth.getCurrentUser();
                                     assert curruser != null;
                                     DatabaseReference myRef = database.getReference("users");
+                                    //storing data for the user
                                     myRef.child(curruser.getUid()).child("name").setValue(signupLayout.nameForSignup.getText().toString());
+                                    myRef.child(curruser.getUid()).child("invoice_count").setValue(0L);
+                                    myRef.child(curruser.getUid()).child("email").setValue(signupLayout.emailForSignup.getText().toString());
+                                    //starting loggedin activity
                                     startActivity(new Intent(SignUpActivity.this, LoggedInActivity.class));
                                     finish();
                                 }

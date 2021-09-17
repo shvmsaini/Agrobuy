@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.agrobuy.app">
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,6 +34,14 @@
         </activity>
         <activity
             android:name=".TradeFinanceActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".CreateInvoiceActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".UploadInvoiceActivity"
             android:exported="true">
         </activity>
     </application>

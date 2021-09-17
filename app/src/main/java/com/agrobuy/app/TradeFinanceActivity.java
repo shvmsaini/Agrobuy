@@ -60,6 +60,7 @@ public class TradeFinanceActivity extends Activity {
         tradeFinance.invoiceSpinner.setAdapter(invoiceAdapter);
 
         tradeFinance.apply.setOnClickListener(v->{
+            Toast.makeText(this, "Wait...", Toast.LENGTH_SHORT).show();
             String customerName = tradeFinance.customerName.getText().toString();
             String invoiceAmount = tradeFinance.invoiceAmount.getText().toString();
             if(customerName.length()==0){
@@ -79,7 +80,6 @@ public class TradeFinanceActivity extends Activity {
                         invoice_id = String.valueOf(task.getResult().getValue());
 
                         //creating a map of all details
-                        HashMap<String,Object> user = new HashMap<>();
                         HashMap<String,String> details = new HashMap<>();
                         HashMap<String,Object> item = new HashMap<>();
                         details.put("select_invoice",tradeFinance.invoiceSpinner.getSelectedItem().toString());
@@ -93,6 +93,7 @@ public class TradeFinanceActivity extends Activity {
                         item.put(invoice_id,details);
                         //Changing invoice id
                         myRef.child("invoice_id").setValue(Integer.parseInt(invoice_id) + 1).addOnCompleteListener(task1 -> {
+
                             //putting everything in the database
                             myRef.child("applied").child(FirebaseAuth.getInstance().getUid()).updateChildren(item);
                             Log.d(TradeFinanceActivity.class.getName(),"success, " + item);

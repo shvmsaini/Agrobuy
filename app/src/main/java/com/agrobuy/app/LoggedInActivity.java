@@ -25,7 +25,7 @@ public class LoggedInActivity extends AppCompatActivity {
     public LoggedinLayoutBinding loggedinLayout;
     private FirebaseAuth mAuth;
     private FirebaseUser currUser;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class LoggedInActivity extends AppCompatActivity {
 
             }
         });
-
+        //navigation drawer
         loggedinLayout.topAppBar.setOnClickListener(v -> loggedinLayout.drawerLayout.openDrawer(Gravity.LEFT));
         loggedinLayout.navigationDrawer.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -80,12 +80,19 @@ public class LoggedInActivity extends AppCompatActivity {
                     return false;
             }
         });
+
         loggedinLayout.exportFinancing.setOnClickListener(v->{
           Intent i = new Intent(this, TradeFinanceActivity.class);
           startActivity(i);
         });
-        loggedinLayout.buyerNetwork.setOnClickListener(v->{
 
+        loggedinLayout.uploadInvoice.setOnClickListener(v->{
+            Intent intent = new Intent(this,UploadInvoiceActivity.class);
+            startActivity(intent);
+        });
+        loggedinLayout.createInvoice.setOnClickListener(v->{
+            Intent intent = new Intent(this,CreateInvoiceActivity.class);
+            startActivity(intent);
         });
 
 
