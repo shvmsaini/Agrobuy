@@ -18,18 +18,124 @@ import androidx.annotation.Nullable;
 
 import com.agrobuy.app.databinding.TradeFinanceBinding;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TradeFinanceActivity extends Activity {
     public TradeFinanceBinding tradeFinance;
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef = database.getReference();
-    private String invoice_id="0";
+    private String invoice_id = "0";
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        tradeFinance = TradeFinanceBinding.inflate(getLayoutInflater());
+        setContentView(tradeFinance.getRoot());
+
+        // financing type spinner
+        String[] financeItems = new String[]{"item1", "item2", "item3"};
+        ArrayAdapter<String> financeAdapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_dropdown_item,financeItems);
+        tradeFinance.financeTypeSpinner.setAdapter(financeAdapter);
+
+        // invoice spinner
+        String[] invoiceItems = new String[]{"I don't have an invoice"};
+        ArrayAdapter<String> invoiceAdapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_spinner_dropdown_item,invoiceItems);
+        tradeFinance.invoiceSpinner.setAdapter(invoiceAdapter);
+
+        // getting invoice data
+        database.getReference("users" + "/" + auth.getCurrentUser().getUid() +  "/" + "invoices").get()
+                .addOnCompleteListener(task -> {
+                    if(!task.isSuccessful()){
+                        Log.d("TradeFinance", ": Error getting invoices data");
+                        Toast.makeText(this, "Error getting invoice data", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        DataSnapshot snapshot = task.getResult();
+                        Map<String,Object> invoicesMap = new HashMap<>();
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            Map<String,Object> map = (Map<String, Object>) postSnapshot.getValue();
+                            invoicesMap.put(postSnapshot.getKey(),map);
+                        }
+
+                        Log.d("invoicesMap",invoicesMap.toString());
+
+                        // Adding keys to Spinner
+                        List<Object> values = new ArrayList<>(invoicesMap.keySet());
+                        String[] items = new String[values.size()];
+                        for (int i = 0; i < values.size(); i++) items[i] = (String) values.get(i);
+
+                        ArrayAdapter<String> inv = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,items);
+                        tradeFinance.invoiceSpinner.setAdapter(inv);
+
+                        // apply button
+                        tradeFinance.apply.setOnClickListener(v->{
+                            Toast.makeText(this, "Wait...", Toast.LENGTH_SHORT).show();
+                            //getting invoice id
+                            myRef.child("invoice_id").get().addOnCompleteListener(snapshotTask -> {
+                                invoice_id = String.valueOf(snapshotTask.getResult().getValue());
+                                if(checkNotEmpty()){
+                                    //creating a map of all details
+                                    HashMap<String,String> details = new HashMap<>();
+                                    HashMap<String,Object> item = new HashMap<>();
+                                    // getting invoice from map
+                                    details.put("select_invoice",tradeFinance.invoiceSpinner.getSelectedItem().toString());
+                                    details.put("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                                    details.put("finance_type",tradeFinance.financeTypeSpinner.getSelectedItem().toString());
+                                    details.put("customer_name",tradeFinance.customerName.getText().toString());
+                                    details.put("invoice_id",invoice_id);
+                                    details.put("invoice_amount",tradeFinance.invoiceAmount.getText().toString());
+                                    item.put(FirebaseAuth.getInstance().getUid(),details);
+
+                                    //Changing invoice id
+                                    myRef.child("invoice_id").setValue(Integer.parseInt(invoice_id) + 1).addOnCompleteListener(task1 -> {
+                                        //putting everything in the database
+                                        database.getReference(getString(R.string.trade_finance_applied))
+                                                .child(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date())).updateChildren(item);
+                                        Log.d(TradeFinanceActivity.class.getName(),"success, " + item);
+                                        //opening email
+                                        Intent i = ExportLogisticsActivity.makeMailIntent( new String[]{"yourEmail@gmail.com"},"Trade Finance",
+                                                "Please send this mail and we will get back to you ASAP!", item);
+                                        if (i.resolveActivity(getPackageManager())!=null)
+                                            startActivityForResult(Intent.createChooser(i, "Choose an email client"), 800);
+                                        else
+                                            Toast.makeText(this,"Failed! Please install a email app",Toast.LENGTH_SHORT).show();
+                                    });
+                                }
+                            });
+                        });
+                    }
+                });
+
+        // calling link
+        SpannableString callSpan = new SpannableString(
+                tradeFinance.tradeFinanceFooter.getText().toString());
+        callSpan.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View view) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:"+ getString(R.string.phone_number)));
+                startActivity(callIntent);
+            }
+        },61,74, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        tradeFinance.tradeFinanceFooter.setText(callSpan);
+        tradeFinance.tradeFinanceFooter.setMovementMethod(LinkMovementMethod.getInstance());
+
+        // back button
+        tradeFinance.backButton.setOnClickListener(v-> super.onBackPressed());
+
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -42,93 +148,20 @@ public class TradeFinanceActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        tradeFinance = TradeFinanceBinding.inflate(getLayoutInflater());
-        setContentView(tradeFinance.getRoot());
-        tradeFinance.backButton.setOnClickListener(v-> super.onBackPressed());
-        // financing type spinner
-        String[] financeItems = new String[]{"item1", "item2", "item3"};
-        ArrayAdapter<String> financeAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_dropdown_item,financeItems);
-        tradeFinance.financeTypeSpinner.setAdapter(financeAdapter);
-        // invoice spinner
-        String[] invoiceItems = new String[]{"item1", "item2", "I don't have an invoice"};
-        ArrayAdapter<String> invoiceAdapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_dropdown_item,invoiceItems);
-        tradeFinance.invoiceSpinner.setAdapter(invoiceAdapter);
+    public boolean checkNotEmpty(){
+        if(tradeFinance.customerName.getText().toString().length()==0){
+            Toast.makeText(getApplicationContext(), "Enter Customer Name", Toast.LENGTH_SHORT).show();
+            tradeFinance.customerName.requestFocus();
+            return false;
+        }
 
-        tradeFinance.apply.setOnClickListener(v->{
-            Toast.makeText(this, "Wait...", Toast.LENGTH_SHORT).show();
-            String customerName = tradeFinance.customerName.getText().toString();
-            String invoiceAmount = tradeFinance.invoiceAmount.getText().toString();
-            if(customerName.length()==0){
-                Toast.makeText(this, "Enter customer name", Toast.LENGTH_SHORT).show();
-                tradeFinance.customerName.requestFocus();
-                return;
-            }
-            if(invoiceAmount.length()==0){
-                Toast.makeText(this, "Please enter invoice amount", Toast.LENGTH_SHORT).show();
-                tradeFinance.invoiceAmount.requestFocus();
-                return;
-            }
+        if(tradeFinance.invoiceAmount.getText().toString().length()==0){
+            Toast.makeText(getApplicationContext(), "Enter Invoice Amount", Toast.LENGTH_SHORT).show();
+            tradeFinance.invoiceAmount.requestFocus();
+            return false;
+        }
 
-            //getting invoice id
-            myRef.child("invoice_id").get().addOnCompleteListener(
-                    task -> {
-                        invoice_id = String.valueOf(task.getResult().getValue());
-
-                        //creating a map of all details
-                        HashMap<String,String> details = new HashMap<>();
-                        HashMap<String,Object> item = new HashMap<>();
-                        details.put("select_invoice",tradeFinance.invoiceSpinner.getSelectedItem().toString());
-                        details.put("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                        details.put("finance_type",tradeFinance.financeTypeSpinner.getSelectedItem().toString());
-                        details.put("curr_date", new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
-                        details.put("customer_name",customerName);
-                        details.put("invoice_id",invoice_id);
-                        details.put("invoice_amount",invoiceAmount);
-//                        user.put(FirebaseAuth.getInstance().getUid(),details);
-                        item.put(invoice_id,details);
-                        //Changing invoice id
-                        myRef.child("invoice_id").setValue(Integer.parseInt(invoice_id) + 1).addOnCompleteListener(task1 -> {
-
-                            //putting everything in the database
-                            myRef.child("applied").child(FirebaseAuth.getInstance().getUid()).updateChildren(item);
-                            Log.d(TradeFinanceActivity.class.getName(),"success, " + item);
-                            //opening email
-                            //WARNING: Only Gmail with work
-                            Intent intent = new Intent (Intent.ACTION_SEND);
-                            intent.setType("message/rfc822");
-                            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"yourEmail@gmail.com"});
-                            intent.putExtra(Intent.EXTRA_SUBJECT, "Trade Finance");
-                            intent.putExtra(Intent.EXTRA_TEXT, "Please send this mail and we will get back to you ASAP!" +
-                                    "\n\n\n" +
-                                    "<--DON'T CHANGE THE LINES BELOW THIS-->\n"
-                                    + item);
-                            intent.setPackage("com.google.android.gm");
-                            if (intent.resolveActivity(getPackageManager())!=null)
-                                startActivityForResult(intent,800);
-                            else
-                                Toast.makeText(this,"Failed! Gmail App is not installed",Toast.LENGTH_SHORT).show();
-                        });
-                    }
-            );
-        });
-
-        // calling link
-        SpannableString callSpan = new SpannableString(
-                tradeFinance.tradeFinanceFooter.getText().toString());
-        callSpan.setSpan(new ClickableSpan() {
-            @Override
-            public void onClick(@NonNull View view) {
-                Intent callIntent = new Intent(Intent.ACTION_DIAL);
-                callIntent.setData(Uri.parse("tel:"+ "8105109480"));
-                startActivity(callIntent);
-            }
-        },61,74, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        tradeFinance.tradeFinanceFooter.setText(callSpan);
-        tradeFinance.tradeFinanceFooter.setMovementMethod(LinkMovementMethod.getInstance());
+        return true;
     }
+
 }

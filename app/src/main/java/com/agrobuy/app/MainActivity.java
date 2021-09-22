@@ -2,6 +2,7 @@ package com.agrobuy.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         next = findViewById(R.id.next);
 
-
         // Check if a user is already logged in
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseAuth.AuthStateListener authStateListener = firebaseAuth1 -> {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
             if (firebaseUser != null) {
+                Log.d("MainActivity","Current User:" + firebaseUser.getUid());
                 Intent intent = new Intent(MainActivity.this, LoggedInActivity.class);
                 startActivity(intent);
                 finish();

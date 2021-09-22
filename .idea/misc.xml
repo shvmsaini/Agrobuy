@@ -13,17 +13,24 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.211" />
         <entry key="app/src/main/res/drawable/input_background.xml" value="0.211" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/book_list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/buyer_network.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/layout/create_invoice.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/export_logistics.xml" value="0.5" />
         <entry key="app/src/main/res/layout/input_background.xml" value="0.1947463768115942" />
-        <entry key="app/src/main/res/layout/loggedin_layout.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/loggedin_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_layout.xml" value="0.2" />
         <entry key="app/src/main/res/layout/product_display.xml" value="0.20260416666666667" />
         <entry key="app/src/main/res/layout/signup_layout.xml" value="0.33" />
         <entry key="app/src/main/res/layout/success_page.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/trade_finance.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/trade_finance.xml" value="0.18" />
         <entry key="app/src/main/res/layout/upload_invoice.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/users_list_item.xml" value="0.1371527777777778" />
         <entry key="app/src/main/res/menu/navigation_drawer.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/navigation_menu.xml" value="0.20572916666666666" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.184" />
+        <entry key="app/src/main/res/xml/file_paths.xml" value="0.20572916666666666" />
       </map>
     </option>
   </component>
@@ -32,12 +39,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.23226351351351351" />
-      </ProjectState>
-    </option>
   </component>
 </project>

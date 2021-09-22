@@ -20,7 +20,7 @@
     <string name="export_financing">Export Financing</string>
     <string name="buyer_network">Buyer Network</string>
     <string name="loggedin_header">TRUST AGROBUY TO START AND SCALE YOUR PRODUCTS</string>
-    <string name="loggedin_subheader">Access your personal buyer network, collateral free export finance, and reliable freight forwarders</string>
+    <string name="loggedin_subheader">Access your personal contentObject network, collateral free export finance, and reliable freight forwarders</string>
     <string name="success_message">You\'re all set. \n \n Our Financing experts will get in touch with you to onboard you quickly. \n \n Happy Trading!</string>
     <string name="finance_subheader">Explore our short term trade Financing Upload the invoice and apply instantly</string>
     <string name="low_cost_finance">Low Cost Finance</string>
@@ -34,5 +34,11 @@
     <string name="invoice_number">Invoice Number</string>
     <string name="no_file">No File Selected</string>
     <string name="upload_invoice_header">Enter the Invoice number and Upload a invoice</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="state">No users.</string>
+    <string name="phone_number">8105109480</string>
+
+    <string name="delivery_partners_applied">delivery_partners/applied/</string>
+    <string name="trade_finance_applied">trade_finance/applied/</string>
 
 </resources>

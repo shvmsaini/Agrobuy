@@ -92,8 +92,9 @@ public class SignUpActivity extends AppCompatActivity {
                                     myRef.child(curruser.getUid()).child("invoice_count").setValue(0L);
                                     myRef.child(curruser.getUid()).child("email").setValue(signupLayout.emailForSignup.getText().toString());
                                     //starting loggedin activity
-                                    startActivity(new Intent(SignUpActivity.this, LoggedInActivity.class));
-                                    finish();
+                                    startActivity(new Intent(SignUpActivity.this, LoggedInActivity.class)
+                                            .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
                                 }
                             });
 
