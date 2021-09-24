@@ -9,8 +9,8 @@
             android:title="@string/account_settings"
             android:checked="true" />
         <item
-            android:id="@+id/my_products"
-            android:title="@string/my_products" />
+            android:id="@+id/my_invoices"
+            android:title="@string/my_invoices" />
         <item
             android:id="@+id/support"
             android:title="@string/contact_support" />

@@ -27,7 +27,6 @@ public class LoggedInActivity extends AppCompatActivity {
     public LoggedinLayoutBinding loggedinLayout;
     private FirebaseAuth mAuth;
     private FirebaseUser currUser;
-
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
@@ -53,15 +52,16 @@ public class LoggedInActivity extends AppCompatActivity {
             }
         });
         //navigation drawer
-        loggedinLayout.topAppBar.setOnClickListener(v -> loggedinLayout.drawerLayout.openDrawer(Gravity.LEFT));
+        loggedinLayout.topAppBar.setNavigationOnClickListener(v -> loggedinLayout.drawerLayout.openDrawer(Gravity.LEFT));
         loggedinLayout.navigationDrawer.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.settings: {
 
                     return true;
                 }
-                case R.id.my_products: {
-
+                case R.id.my_invoices: {
+                    Intent intent = new Intent(this,MyInvoicesActivity.class);
+                    startActivity(intent);
                     return true;
                 }
 
@@ -72,7 +72,7 @@ public class LoggedInActivity extends AppCompatActivity {
                 case R.id.sign_out: {
                     mAuth.signOut();
                     finish();
-//                    // closing all previous activities
+//                    closing all previous activities
                     Intent i = new Intent(LoggedInActivity.this, LoginActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
                             Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -158,6 +158,11 @@ public class LoggedInActivity extends AppCompatActivity {
             });
         });
 
+        loggedinLayout.myInvoices.setOnClickListener(v->{
+            Intent intent = new Intent(this,MyInvoicesActivity.class);
+            startActivity(intent);
+        });
+
         loggedinLayout.uploadInvoice.setOnClickListener(v->{
             Intent intent = new Intent(this,UploadInvoiceActivity.class);
             startActivity(intent);
@@ -166,8 +171,6 @@ public class LoggedInActivity extends AppCompatActivity {
             Intent intent = new Intent(this,CreateInvoiceActivity.class);
             startActivity(intent);
         });
-
-
 
         // calling link
         SpannableString callSpan = new SpannableString(

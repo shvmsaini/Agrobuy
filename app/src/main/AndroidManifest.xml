@@ -71,6 +71,10 @@
             android:name=".ExportLogisticsActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".MyInvoicesActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

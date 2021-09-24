@@ -39,7 +39,6 @@ public class ContentDisplayAdapter extends RecyclerView.Adapter<ContentDisplayAd
         Log.d(LOG_TAG,"bindViewHolder");
         ContentObject contentObject = mContentObjectList.get(position);
         Glide.with(mContext).load(contentObject.getProfilePicURL()).into(holder.pic);
-
         holder.bind(contentObject,listener);
     }
 
@@ -62,11 +61,7 @@ public class ContentDisplayAdapter extends RecyclerView.Adapter<ContentDisplayAd
             title.setText(item.getName());
             subTitle.setText(item.getSubLine());
 //            Glide.with(itemView.getContext()).load(item.profilePicURL).into(pic);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
-                    listener.onItemClick(item);
-                }
-            });
+            itemView.setOnClickListener(v -> listener.onItemClick(item));
         }
     }
 }

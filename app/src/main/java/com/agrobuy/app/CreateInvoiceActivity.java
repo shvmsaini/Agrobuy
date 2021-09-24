@@ -43,7 +43,8 @@ public class CreateInvoiceActivity extends Activity {
                 details.put("invoice_amount" ,createInvoice.invoiceAmount.getText().toString());
                 details.put("invoice_due_date" ,createInvoice.datePicker.getText().toString());
                 details.put("payment_terms" ,createInvoice.terms.getText().toString());
-                details.put("delivery_mode" ,createInvoice.destination.getText().toString());
+                details.put("delivery_mode" ,createInvoice.deliveryMode.getText().toString());
+                details.put("delivery_destination" ,createInvoice.deliveryDestination.getText().toString());
                 item.put(createInvoice.invoiceNumber.getText().toString(),details);
             }
 
@@ -99,31 +100,31 @@ public class CreateInvoiceActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Enter Customer Name", Toast.LENGTH_SHORT).show();
             createInvoice.customerName.requestFocus();
             return false;
-
         }
         if(createInvoice.invoiceAmount.getText().toString().length()==0){
             Toast.makeText(getApplicationContext(), "Enter invoiceAmount", Toast.LENGTH_SHORT).show();
             createInvoice.invoiceAmount.requestFocus();
             return false;
-
         }
         if(createInvoice.datePicker.getText().toString().length()==0){
             Toast.makeText(getApplicationContext(), "Enter Date", Toast.LENGTH_SHORT).show();
             createInvoice.datePicker.requestFocus();
             return false;
-
         }
         if(createInvoice.terms.getText().toString().length()==0){
             Toast.makeText(getApplicationContext(), "Enter Terms", Toast.LENGTH_SHORT).show();
             createInvoice.terms.requestFocus();
             return false;
-
         }
-        if(createInvoice.destination.getText().toString().length()==0){
-            Toast.makeText(getApplicationContext(), "Enter Destination Mode", Toast.LENGTH_SHORT).show();
-            createInvoice.destination.requestFocus();
+        if(createInvoice.deliveryMode.getText().toString().length()==0){
+            Toast.makeText(getApplicationContext(), "Enter delivery Mode", Toast.LENGTH_SHORT).show();
+            createInvoice.deliveryMode.requestFocus();
             return false;
-
+        }
+        if(createInvoice.deliveryDestination.getText().toString().length()==0){
+            Toast.makeText(getApplicationContext(), "Enter delivery Destination", Toast.LENGTH_SHORT).show();
+            createInvoice.deliveryDestination.requestFocus();
+            return false;
         }
         return true;
     }

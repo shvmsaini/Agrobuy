@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +43,9 @@ public class DeliveryPartnersActivity extends Activity {
                 });
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DividerItemDecoration itemDecorator = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
+        itemDecorator.setDrawable(ContextCompat.getDrawable(recyclerView.getContext(),R.drawable.divider));
+        recyclerView.addItemDecoration(itemDecorator);
         recyclerView.setAdapter(adapter);
 
         database.getReference("delivery_partners" + "/" + auth.getCurrentUser().getUid()).get()

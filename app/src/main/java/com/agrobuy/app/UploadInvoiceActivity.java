@@ -31,7 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class UploadInvoiceActivity extends Activity {
     UploadInvoiceBinding uploadInvoice;
@@ -44,7 +43,7 @@ public class UploadInvoiceActivity extends Activity {
     Uri uri;
     private final int FILE_PICK_REQUEST=200;
     private final int REQUEST_CAPTURE_IMAGE = 201;
-    String imageFilePath;
+    String imageFilePath ;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,47 +90,53 @@ public class UploadInvoiceActivity extends Activity {
             Toast.makeText(this, "Wait...", Toast.LENGTH_LONG).show();
 
             // Checking if invoice already exist or not
-            if(!isInvoiceExists()){
-                storageRef = storageRef.child(currUser.getUid() + "/" + invoiceNumber);
-                //Uploading file
-                storageRef.putFile(uri).addOnCompleteListener(task -> {
-                    if(!task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(), "Unable to Upload", Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Successfully Uploaded", Toast.LENGTH_SHORT).show();
-                        // putting link in database
-                        dbRef = database.getReference("users").child(currUser.getUid()).child("invoices");
-                        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                            HashMap<String,Object> item = new HashMap<>();
-                            HashMap<String,Object> details = new HashMap<>();
-                            details.put("link",uri.toString());
-                            item.put(uploadInvoice.uploadInvoiceNumber.getText().toString(),details);
-                            dbRef.updateChildren(item, (error, ref) -> {
-                                //updating invoice_count
-                                database.getReference("users").child(currUser.getUid()).child("invoice_count")
-                                        .get().addOnCompleteListener(invoiceTask -> {
-                                    if (!invoiceTask.isSuccessful()) {
-                                        Log.e("firebase", "Error getting invoice_count", invoiceTask.getException());
-                                    }
-                                    else {
-                                        Log.d("firebase", "invoice_count" + invoiceTask.getResult().getValue());
-                                        String invoiceCount = invoiceTask.getResult().getValue().toString();
+            FirebaseDatabase.getInstance().getReference("users" + "/" + currUser.getUid() +  "/" + "invoices" +  "/"
+                    + uploadInvoice.uploadInvoiceNumber.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(!snapshot.exists()){
+                        storageRef = storageRef.child(currUser.getUid() + "/" + invoiceNumber);
+                        //Uploading file
+                        storageRef.putFile(uri).addOnCompleteListener(task -> {
+                            if(!task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Unable to Upload", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(getApplicationContext(), "Successfully Uploaded", Toast.LENGTH_SHORT).show();
+                                // putting link in database
+                                dbRef = database.getReference("users").child(currUser.getUid()).child("invoices");
+                                storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                                    HashMap<String,Object> item = new HashMap<>();
+                                    HashMap<String,Object> details = new HashMap<>();
+                                    details.put("link",uri.toString());
+                                    item.put(uploadInvoice.uploadInvoiceNumber.getText().toString(),details);
+                                    dbRef.updateChildren(item, (error, ref) -> {
+                                        //updating invoice_count
                                         database.getReference("users").child(currUser.getUid()).child("invoice_count")
-                                                .setValue(Integer.parseInt(invoiceCount)+1);
-                                    }
-                                    Toast.makeText(getApplicationContext(), "invoice created", Toast.LENGTH_SHORT).show();
+                                                .get().addOnCompleteListener(invoiceTask -> {
+                                            if (!invoiceTask.isSuccessful()) {
+                                                Log.e("firebase", "Error getting invoice_count", invoiceTask.getException());
+                                            }
+                                            else {
+                                                Log.d("firebase", "invoice_count" + invoiceTask.getResult().getValue());
+                                                String invoiceCount = invoiceTask.getResult().getValue().toString();
+                                                database.getReference("users").child(currUser.getUid()).child("invoice_count")
+                                                        .setValue(Integer.parseInt(invoiceCount)+1);
+                                            }
+                                            Toast.makeText(getApplicationContext(), "invoice created", Toast.LENGTH_SHORT).show();
+                                        });
+                                    });
                                 });
-                            });
+                            }
                         });
-
                     }
-                });
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "Invoice number already exists", Toast.LENGTH_SHORT).show();
-            }
-
-
+                    else{
+                        Toast.makeText(getApplicationContext(), "Invoice number already exists", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
         });
 
         uploadInvoice.openCamera.setOnClickListener(v->{
@@ -141,6 +146,8 @@ public class UploadInvoiceActivity extends Activity {
                 File photoFile = null;
                 try {
                     photoFile = createImageFile();
+                    Log.d("imageFilePath",imageFilePath);
+//                    savedInstanceState.putString("imageFilePath",imageFilePath);
                 } catch (IOException ex) {
                     // Error occurred while creating the File
                 }
@@ -189,16 +196,19 @@ public class UploadInvoiceActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 Toast.makeText(this, "Captured! Click on Upload to upload the image.",
                         Toast.LENGTH_SHORT).show();
-               Log.d("Image Captured, Path: ",imageFilePath);
                uploadInvoice.fileSelect.setText(imageFilePath);
                uri = Uri.fromFile( new File(imageFilePath));
 
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
+        else{
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
     }
 
     private File createImageFile() throws IOException {
+
         String timeStamp =
                 new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "IMG_" + timeStamp + "_";
@@ -210,24 +220,14 @@ public class UploadInvoiceActivity extends Activity {
         );
 
         imageFilePath = image.getAbsolutePath();
+
+        Log.d("createImageFile()",imageFilePath);
         return image;
     }
 
-    public boolean isInvoiceExists(){
-        AtomicBoolean flag = new AtomicBoolean();
-        flag.set(false);
-        FirebaseDatabase.getInstance().getReference("users" + "/" + currUser.getUid() +  "/" + "invoices" +  "/"
-                + uploadInvoice.uploadInvoiceNumber.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    flag.set(true);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-        return flag.get();
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        imageFilePath = savedInstanceState.getString("imageFilePath");
     }
 }

@@ -50,6 +50,11 @@ public class ExportLogisticsActivity extends Activity {
 
         });
 
+        exportLogistics.topAppBar.setNavigationOnClickListener(v->{
+            Log.d("TAG", "onBackPressed()");
+            onBackPressed();
+        });
+
     }
 
     @Override
@@ -172,7 +177,5 @@ public class ExportLogisticsActivity extends Activity {
                 + item);
         return intent;
     }
-
-
 
 }
