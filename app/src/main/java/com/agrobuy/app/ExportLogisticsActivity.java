@@ -171,6 +171,7 @@ public class ExportLogisticsActivity extends Activity {
         intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_EMAIL, email);
         intent.putExtra(Intent.EXTRA_SUBJECT, subject );
+        if(TEXT!=null && item!=null)
         intent.putExtra(Intent.EXTRA_TEXT, TEXT +
                 "\n\n\n" +
                 "<--DON'T CHANGE ANY LINE BELOW THIS-->\n"

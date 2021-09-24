@@ -96,6 +96,7 @@ public class TradeFinanceActivity extends Activity {
                                     details.put("customer_name",tradeFinance.customerName.getText().toString());
                                     details.put("invoice_id",invoice_id);
                                     details.put("invoice_amount",tradeFinance.invoiceAmount.getText().toString());
+                                    details.put("phone_number",tradeFinance.phoneNumber.getText().toString());
                                     item.put(FirebaseAuth.getInstance().getUid(),details);
 
                                     //Changing invoice id

@@ -55,17 +55,18 @@ public class LoggedInActivity extends AppCompatActivity {
         loggedinLayout.topAppBar.setNavigationOnClickListener(v -> loggedinLayout.drawerLayout.openDrawer(Gravity.LEFT));
         loggedinLayout.navigationDrawer.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.settings: {
 
-                    return true;
-                }
                 case R.id.my_invoices: {
                     Intent intent = new Intent(this,MyInvoicesActivity.class);
                     startActivity(intent);
+                    loggedinLayout.drawerLayout.closeDrawers();
                     return true;
                 }
 
                 case R.id.support: {
+                    Intent intent = new Intent(this,ContactUs.class);
+                    startActivity(intent);
+                    loggedinLayout.drawerLayout.closeDrawers();
                     return true;
                 }
 
@@ -77,6 +78,7 @@ public class LoggedInActivity extends AppCompatActivity {
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
                             Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
+                    loggedinLayout.drawerLayout.closeDrawers();
                     return true;
                 }
 

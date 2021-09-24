@@ -110,30 +110,35 @@
             android:text="@string/finance_subheader"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/image"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="5dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/apply"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finance_header_group"
+        app:layout_constraintVertical_bias="0.79">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="Select Invoice"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -145,24 +150,28 @@
 
             <Spinner
                 android:id="@+id/invoice_spinner"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="start"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/textView7"
                 android:width="200dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:minHeight="32dp" />
+        </RelativeLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="Invoice amount"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -175,29 +184,35 @@
             <EditText
                 android:id="@+id/invoice_amount"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="end"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/textView8"
                 android:width="200dp"
                 android:background="@drawable/input_background"
                 android:hint="Enter in USD"
                 android:inputType="numberDecimal"
+                android:minHeight="32dp"
                 android:paddingStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView7"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:text="Customer Name"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -210,27 +225,32 @@
             <EditText
                 android:id="@+id/customer_name"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_gravity="end"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/textView7"
                 android:width="200dp"
                 android:background="@drawable/input_background"
                 android:hint="Customer Name"
+                android:minHeight="32dp"
                 android:paddingStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
 
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:orientation="horizontal">
 
             <TextView
+                android:layout_centerVertical="true"
+
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -244,7 +264,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-
+                android:layout_marginStart="16dp"
+                android:layout_toRightOf="@id/textView6"
+                android:layout_centerVertical="true"
+android:layout_alignParentEnd="true"
                 android:id="@+id/finance_type_spinner"
                 android:layout_width="200dp"
                 android:layout_height="32dp"
@@ -255,7 +278,42 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:layout_marginStart="16dp"
+
+                android:id="@+id/phone_number"
+                android:layout_width="200dp"
+                android:layout_height="32dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="start"
+                android:layout_toEndOf="@id/textView8"
+                android:width="200dp"
+                android:background="@drawable/input_background"
+                android:hint="Phone Number"
+                android:paddingStart="8dp" />
+        </RelativeLayout>
     </LinearLayout>
 
     <Button
@@ -270,7 +328,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.834" />
+        app:layout_constraintVertical_bias="0.9" />
 
     <TextView
         android:id="@+id/trade_finance_footer"
@@ -286,14 +344,14 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/apply"
-        app:layout_constraintVertical_bias="0.42000002" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="-189dp" />
 
     <TextView
         android:id="@+id/trade_finance_header"
@@ -308,7 +366,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

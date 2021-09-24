@@ -23,12 +23,12 @@
         style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/thumbnail"
+        android:layout_toEndOf="@id/thumbnail"
         android:ellipsize="end"
         android:maxLines="3"
         android:paddingStart="8dp"
+        android:paddingEnd="4dp"
         android:paddingTop="8dp"
-        android:text="@string/app_name"
         android:textSize="16sp" />
 
     <TextView
@@ -36,9 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
-        android:layout_toRightOf="@id/thumbnail"
+        android:layout_toEndOf="@id/thumbnail"
         android:paddingStart="8dp"
-        android:text="@string/app_name" />
+        android:paddingEnd="4dp"/>
 
 
 </RelativeLayout>

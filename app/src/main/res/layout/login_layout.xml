@@ -41,6 +41,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="176dp"
         android:paddingStart="8dp"
+        android:drawableTint="@color/black"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawablePadding="4dp"
         android:background="@drawable/input_background"

@@ -1,4 +1,4 @@
-package com.agrobuy.app;
+package com.agrobuy.app.adapters;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.agrobuy.app.object.Invoice;
+import com.agrobuy.app.R;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.agrobuy.app;
+package com.agrobuy.app.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.agrobuy.app.object.ContentObject;
+import com.agrobuy.app.OnItemClickListener;
+import com.agrobuy.app.R;
 import com.bumptech.glide.Glide;
 
 import java.util.List;

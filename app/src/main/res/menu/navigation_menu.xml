@@ -4,10 +4,10 @@
     <group
         android:id="@+id/navigation_menu"
         android:checkableBehavior="single">
-        <item
-            android:id="@+id/settings"
-            android:title="@string/account_settings"
-            android:checked="true" />
+<!--        <item-->
+<!--            android:id="@+id/settings"-->
+<!--            android:title="@string/account_settings"-->
+<!--            android:checked="true" />-->
         <item
             android:id="@+id/my_invoices"
             android:title="@string/my_invoices" />

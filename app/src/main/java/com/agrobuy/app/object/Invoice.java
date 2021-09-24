@@ -1,4 +1,4 @@
-package com.agrobuy.app;
+package com.agrobuy.app.object;
 
 public class Invoice {
     String invoiceNumber;
