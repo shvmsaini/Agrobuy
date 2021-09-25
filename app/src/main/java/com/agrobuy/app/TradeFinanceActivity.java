@@ -43,13 +43,13 @@ public class TradeFinanceActivity extends Activity {
         setContentView(tradeFinance.getRoot());
 
         // financing type spinner
-        String[] financeItems = new String[]{"item1", "item2", "item3"};
+        String[] financeItems = new String[]{"Low Cost Insurance","Invoice Discounting","I am not sure"};
         ArrayAdapter<String> financeAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_dropdown_item,financeItems);
         tradeFinance.financeTypeSpinner.setAdapter(financeAdapter);
 
         // invoice spinner
-        String[] invoiceItems = new String[]{"Low Cost Insurance","Invoice Discounting","I am not sure"};
+        String[] invoiceItems = new String[]{"item1", "item2", "item3"};
         ArrayAdapter<String> invoiceAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_dropdown_item,invoiceItems);
         tradeFinance.invoiceSpinner.setAdapter(invoiceAdapter);

@@ -1,6 +1,7 @@
 package com.agrobuy.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -86,6 +87,11 @@ public class CreateInvoiceActivity extends Activity {
         });
         createInvoice.topAppBar.setNavigationOnClickListener(v->{
             onBackPressed();
+        });
+
+        createInvoice.financingAdButton.setOnClickListener(v->{
+            Intent i = new Intent(this,TradeFinanceActivity.class);
+            startActivity(i);
         });
 
     }

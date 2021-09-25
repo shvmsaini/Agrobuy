@@ -46,34 +46,43 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".SignUpActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".LoggedInActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".TradeFinanceActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".CreateInvoiceActivity"
             android:exported="true" />
         <activity
             android:name=".UploadInvoiceActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".BuyerNetworkActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".DeliveryPartnersActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".ExportLogisticsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
         <activity
             android:name=".MyInvoicesActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode = "singleTop"/>
     </application>
 
 </manifest>
