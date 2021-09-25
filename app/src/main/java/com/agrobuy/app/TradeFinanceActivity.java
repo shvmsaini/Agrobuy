@@ -140,12 +140,12 @@ public class TradeFinanceActivity extends Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==requestCode){
+        if(requestCode==800){
+            if(resultCode==RESULT_OK)
             Toast.makeText(getApplicationContext(), "Success! We will get back to you ASAP!", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "Failed! Please send email to complete", Toast.LENGTH_SHORT).show();
+            else Toast.makeText(getApplicationContext(), "Failed! Please send email to complete", Toast.LENGTH_SHORT).show();
+        }else{
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 

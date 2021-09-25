@@ -52,6 +52,7 @@ public class MyInvoicesActivity extends Activity {
                 .addOnCompleteListener(task -> {
                     Log.d("MyInvoices","added onCompleteListener");
                     if(!task.isSuccessful()){
+                        emptyView.setText("Error getting invoices data.");
                         Log.d("MyInvoices", ": Error getting invoices data");
                         Toast.makeText(this, "Error getting invoice data", Toast.LENGTH_SHORT).show();
                     }

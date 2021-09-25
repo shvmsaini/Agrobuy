@@ -37,12 +37,13 @@ public class LoggedInActivity extends AppCompatActivity {
         //getting instances
         mAuth = FirebaseAuth.getInstance();
         currUser = mAuth.getCurrentUser();
-
         assert currUser != null;
         DatabaseReference myRef = database.getReference("users");
         myRef.child(currUser.getUid()).child("name").get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
-                Log.e("firebase", "Error getting data", task.getException());
+                Log.e("firebase", "Error getting data.", task.getException());
+                Toast.makeText(this, "Error getting data. Make sure your internet is stable.", Toast.LENGTH_SHORT).show();
+                
             }
             else {
                 Log.d("firebase", String.valueOf(task.getResult().getValue()));

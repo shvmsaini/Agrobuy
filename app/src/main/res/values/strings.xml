@@ -34,14 +34,15 @@
     <string name="no_file">No File Selected</string>
     <string name="upload_invoice_header">Enter the Invoice number and Upload a invoice</string>
     <string name="thumbnail">thumbnail</string>
-    <string name="state">No users.</string>
+    <string name="state">Nothing here.</string>
     <string name="phone_number">8105109480</string>
+    <string name="delivery_destination">Delivery Destination</string>
+    <string name="sell">Sell</string>
+    <string name="contact_us">For any queries feel free to contact us at +918105109480</string>
 
     <!-- for firebase -->
     <string name="delivery_partners_applied">delivery_partners/applied/</string>
     <string name="trade_finance_applied">trade_finance/applied/</string>
-    <string name="delivery_destination">Delivery Destination</string>
-    <string name="sell">Sell</string>
-    <string name="contact_us">For any queries feel free to contact us at +918105109480</string>
+    <string name="buyer_applied">buyer_network/applied/</string>
 
 </resources>

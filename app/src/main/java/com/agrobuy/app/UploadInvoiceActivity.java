@@ -41,7 +41,7 @@ public class UploadInvoiceActivity extends Activity {
     DatabaseReference dbRef;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     Uri uri;
-    private final int FILE_PICK_REQUEST=200;
+    private final int FILE_PICK_REQUEST = 200;
     private final int REQUEST_CAPTURE_IMAGE = 201;
     String imageFilePath ;
 
@@ -147,7 +147,6 @@ public class UploadInvoiceActivity extends Activity {
                 try {
                     photoFile = createImageFile();
                     Log.d("imageFilePath",imageFilePath);
-//                    savedInstanceState.putString("imageFilePath",imageFilePath);
                 } catch (IOException ex) {
                     // Error occurred while creating the File
                 }
@@ -229,5 +228,10 @@ public class UploadInvoiceActivity extends Activity {
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         imageFilePath = savedInstanceState.getString("imageFilePath");
+    }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("imageFilePath",String.valueOf(imageFilePath));
     }
 }

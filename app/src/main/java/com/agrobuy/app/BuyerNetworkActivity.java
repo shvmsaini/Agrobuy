@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -32,12 +33,14 @@ public class BuyerNetworkActivity extends Activity {
     public List<BuyerObject> buyerList = new ArrayList<>();
     RecyclerView recyclerView;
     BuyerDetailAdapter adapter;
+    TextView emptyView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_network);
-
+        emptyView = findViewById(R.id.empty_view);
+        emptyView.setText("Loading...");
         adapter = new BuyerDetailAdapter(this, buyerList,
                 item ->{
                     Intent i = new Intent(this, BuyerDetailActivity.class);
@@ -55,6 +58,7 @@ public class BuyerNetworkActivity extends Activity {
         database.getReference("buyer_network" + "/" + auth.getCurrentUser().getUid()).get()
                 .addOnCompleteListener(task -> {
                     if(!task.isSuccessful()){
+                        emptyView.setText("Error getting buyers data");
                         Log.d("BuyerNetwork", ": Error getting buyers data");
                         Toast.makeText(this, "Error getting buyers data", Toast.LENGTH_SHORT).show();
                     }
