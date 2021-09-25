@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
             if (firebaseUser == null) {
                 next.setOnClickListener(view -> {
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 });
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             if (firebaseUser != null) {
                 Log.d("MainActivity","Current User:" + firebaseUser.getUid());
                 Intent intent = new Intent(MainActivity.this, LoggedInActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
             }

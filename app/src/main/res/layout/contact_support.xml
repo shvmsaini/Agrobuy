@@ -56,6 +56,8 @@
         android:gravity="center"
         android:text="@string/contact_us"
         android:textSize="20sp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

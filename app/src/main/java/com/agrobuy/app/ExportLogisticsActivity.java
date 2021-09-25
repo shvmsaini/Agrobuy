@@ -51,9 +51,10 @@ public class ExportLogisticsActivity extends Activity {
         });
 
         exportLogistics.topAppBar.setNavigationOnClickListener(v->{
-            Log.d("TAG", "onBackPressed()");
+            Log.d(ExportLogisticsActivity.class.getName(), "onBackPressed()");
             onBackPressed();
         });
+
 
     }
 

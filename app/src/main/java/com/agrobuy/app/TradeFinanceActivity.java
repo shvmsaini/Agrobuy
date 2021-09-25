@@ -49,7 +49,7 @@ public class TradeFinanceActivity extends Activity {
         tradeFinance.financeTypeSpinner.setAdapter(financeAdapter);
 
         // invoice spinner
-        String[] invoiceItems = new String[]{"I don't have an invoice"};
+        String[] invoiceItems = new String[]{"Low Cost Insurance","Invoice Discounting","I am not sure"};
         ArrayAdapter<String> invoiceAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_dropdown_item,invoiceItems);
         tradeFinance.invoiceSpinner.setAdapter(invoiceAdapter);
@@ -134,7 +134,7 @@ public class TradeFinanceActivity extends Activity {
         tradeFinance.tradeFinanceFooter.setMovementMethod(LinkMovementMethod.getInstance());
 
         // back button
-        tradeFinance.backButton.setOnClickListener(v-> super.onBackPressed());
+        tradeFinance.topAppBar.setNavigationOnClickListener(v-> super.onBackPressed());
 
     }
 
@@ -159,6 +159,11 @@ public class TradeFinanceActivity extends Activity {
         if(tradeFinance.invoiceAmount.getText().toString().length()==0){
             Toast.makeText(getApplicationContext(), "Enter Invoice Amount", Toast.LENGTH_SHORT).show();
             tradeFinance.invoiceAmount.requestFocus();
+            return false;
+        }
+        if(tradeFinance.phoneNumber.getText().toString().length()==0){
+            Toast.makeText(getApplicationContext(), "Enter phone number", Toast.LENGTH_SHORT).show();
+            tradeFinance.phoneNumber.requestFocus();
             return false;
         }
 

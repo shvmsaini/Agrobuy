@@ -160,7 +160,7 @@ public class UploadInvoiceActivity extends Activity {
         });
 
         //back button
-        uploadInvoice.backButton.setOnClickListener(view -> onBackPressed());
+        uploadInvoice.topAppBar.setNavigationOnClickListener(view -> onBackPressed());
     }
 
     @Override

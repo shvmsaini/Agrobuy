@@ -63,7 +63,7 @@
                     android:layout_marginBottom="8dp"
                     android:gravity="center_horizontal"
                     android:text="@string/loggedin_header"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     app:layout_anchor="@+id/constraintLayout"
                     app:layout_anchorGravity="center"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -76,17 +76,16 @@
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="80dp"
                     android:layout_marginEnd="8dp"
                     android:gravity="center_horizontal"
                     android:text="@string/loggedin_subheader"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.19" />
+                    app:layout_constraintTop_toBottomOf="@id/loggedin_header" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -240,9 +239,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/loggedin_footer"
                 app:layout_anchorGravity="bottom"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -256,12 +256,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.google.android.material.navigation.NavigationView
-                        android:id="@+id/navigation_drawer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="start"
-                        app:menu="@menu/navigation_menu" />
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/navigation_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>
 
 

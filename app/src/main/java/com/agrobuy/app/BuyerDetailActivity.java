@@ -87,6 +87,12 @@ public class BuyerDetailActivity extends Activity {
             Intent i = new Intent(this, TradeFinanceActivity.class);
             startActivity(i);
         });
+
+        binding.topAppBar.setNavigationOnClickListener(v->{
+            Log.d(BuyerDetailActivity.class.getName(), "onBackPressed()");
+            onBackPressed();
+        });
+
     }
 
     @Override

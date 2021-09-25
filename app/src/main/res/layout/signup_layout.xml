@@ -60,6 +60,7 @@
         android:drawablePadding="4dp"
         android:ems="10"
         android:hint="@string/email"
+        android:drawableTint="@color/black"
         android:inputType="textEmailAddress"
         android:paddingStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/password_for_signup"

@@ -84,7 +84,7 @@ public class CreateInvoiceActivity extends Activity {
                     });
 
         });
-        createInvoice.backButton.setOnClickListener(v->{
+        createInvoice.topAppBar.setNavigationOnClickListener(v->{
             onBackPressed();
         });
 

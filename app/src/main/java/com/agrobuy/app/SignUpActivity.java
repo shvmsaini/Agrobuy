@@ -33,7 +33,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(signupLayout.getRoot());
         auth = FirebaseAuth.getInstance(); // getting firebase auth
 
-
         // back to login
         SpannableString loginSpan = new SpannableString(signupLayout.loginBack.getText());
         loginSpan.setSpan(new ClickableSpan() {
@@ -76,6 +75,10 @@ public class SignUpActivity extends AppCompatActivity {
                     signupLayout.passwordForSignup.requestFocus();
                     Toast.makeText(getApplicationContext(),"Password must be more than 8 digit",Toast.LENGTH_LONG).show();
                 }
+                if(!LoginActivity.isValidEmail(signupLayout.emailForSignup.getText().toString())){
+                    signupLayout.emailForSignup.requestFocus();
+                    Toast.makeText(getApplicationContext(),"Please enter a valid email",Toast.LENGTH_LONG).show();
+                }
                 else{
                     auth.createUserWithEmailAndPassword(email,pass)
                             .addOnCompleteListener(SignUpActivity.this, task -> {
@@ -94,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     //starting loggedin activity
                                     startActivity(new Intent(SignUpActivity.this, LoggedInActivity.class)
                                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-
+                                    finish();
                                 }
                             });
 

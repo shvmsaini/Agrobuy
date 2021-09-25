@@ -44,5 +44,6 @@
     <string name="delivery_partners_applied">delivery_partners/applied/</string>
     <string name="trade_finance_applied">trade_finance/applied/</string>
     <string name="buyer_applied">buyer_network/applied/</string>
+    <string name="avail_logistics">Avail Logistics</string>
 
 </resources>
