@@ -38,7 +38,7 @@ public class ExportLogisticsActivity extends Activity {
                 // putting item in the database
                 database.getReference(getString(R.string.delivery_partners_applied)).updateChildren(item);
                 // opening email
-                Intent intent = makeMailIntent(new String[]{"yourEmail@gmail.com"},"Export Logistics",
+                Intent intent = makeMailIntent(new String[]{"vishnu@agrobuy.co"},"Export Logistics",
                         "Please send this mail to continue availing export logistics.", item);
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(Intent.createChooser(intent, "Choose an email client"), 800);

@@ -39,6 +39,7 @@
         android:id="@+id/textView3"
         android:layout_width="318dp"
         android:layout_height="61dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text="@string/subtagline"
         android:textSize="20sp"
@@ -47,20 +48,36 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintVertical_bias="0.241"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/contact_us"
-        android:textSize="20sp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/contact_us"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView16"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/email_support"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

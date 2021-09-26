@@ -38,7 +38,7 @@ public class BuyerDetailActivity extends Activity {
         binding.history.setText(buyerObject.getHistory());
         binding.timepref.setText(buyerObject.getTimePref());
         binding.email.setText(buyerObject.getEmail());
-        Glide.with(this).load(buyerObject.getPicURL()).into(binding.buyerImage);
+        Glide.with(this).load(buyerObject.getPicURL()).placeholder(R.drawable.ic_baseline_person_24).into(binding.buyerImage);
 
         binding.topAppBar.setTitle(buyerObject.getBuyerName());
 

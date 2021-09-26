@@ -110,7 +110,7 @@ public class TradeFinanceActivity extends Activity {
                                                     .child(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date())).updateChildren(item);
                                             Log.d(TradeFinanceActivity.class.getName(),"success, " + item);
                                             //opening email
-                                            Intent i = ExportLogisticsActivity.makeMailIntent( new String[]{"yourEmail@gmail.com"},"Trade Finance",
+                                            Intent i = ExportLogisticsActivity.makeMailIntent( new String[]{"vishnu@agrobuy.co"},"Trade Finance",
                                                     "Please send this mail and we will get back to you ASAP!", item);
                                             if (i.resolveActivity(getPackageManager())!=null)
                                                 startActivityForResult(Intent.createChooser(i, "Choose an email client"), 800);

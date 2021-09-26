@@ -53,7 +53,6 @@ public class UploadInvoiceActivity extends Activity {
 
         // getting instances
         storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
         mAuth = FirebaseAuth.getInstance();
         currUser = mAuth.getCurrentUser();
         dbRef = FirebaseDatabase.getInstance().getReference();
@@ -77,30 +76,37 @@ public class UploadInvoiceActivity extends Activity {
 
         // upload
         uploadInvoice.upload.setOnClickListener(v->{
+            // for preventing multiple clicks
+            uploadInvoice.upload.setEnabled(false);
             String invoiceNumber = uploadInvoice.uploadInvoiceNumber.getText().toString();
             if(invoiceNumber.length()==0){
                 Toast.makeText(this, "enter an unique invoice number", Toast.LENGTH_SHORT).show();
                 uploadInvoice.uploadInvoiceNumber.requestFocus();
+                uploadInvoice.upload.setEnabled(true);
                 return;
             }
             if(uploadInvoice.fileSelect.getText().equals(getResources().getString(R.string.no_file))){
                 Toast.makeText(this, "Select a file first or Use camera", Toast.LENGTH_SHORT).show();
+                uploadInvoice.upload.setEnabled(true);
                 return;
             }
-            Toast.makeText(this, "Wait...", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Wait...", Toast.LENGTH_LONG+1000).show();
 
             // Checking if invoice already exist or not
             FirebaseDatabase.getInstance().getReference("users" + "/" + currUser.getUid() +  "/" + "invoices" +  "/"
                     + uploadInvoice.uploadInvoiceNumber.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    //doesn't exist
                     if(!snapshot.exists()){
-                        storageRef = storageRef.child(currUser.getUid() + "/" + invoiceNumber);
+                        storageRef = storage.getReference(currUser.getUid() + "/" + invoiceNumber);
                         //Uploading file
                         storageRef.putFile(uri).addOnCompleteListener(task -> {
                             if(!task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(), "Unable to Upload", Toast.LENGTH_SHORT).show();
-                            }else{
+                                uploadInvoice.upload.setEnabled(true);
+                            }
+                            else{
                                 Toast.makeText(getApplicationContext(), "Successfully Uploaded", Toast.LENGTH_SHORT).show();
                                 // putting link in database
                                 dbRef = database.getReference("users").child(currUser.getUid()).child("invoices");
@@ -114,23 +120,29 @@ public class UploadInvoiceActivity extends Activity {
                                         database.getReference("users").child(currUser.getUid()).child("invoice_count")
                                                 .get().addOnCompleteListener(invoiceTask -> {
                                             if (!invoiceTask.isSuccessful()) {
+                                                uploadInvoice.upload.setEnabled(true);
                                                 Log.e("firebase", "Error getting invoice_count", invoiceTask.getException());
                                             }
                                             else {
+
                                                 Log.d("firebase", "invoice_count" + invoiceTask.getResult().getValue());
                                                 String invoiceCount = invoiceTask.getResult().getValue().toString();
                                                 database.getReference("users").child(currUser.getUid()).child("invoice_count")
                                                         .setValue(Integer.parseInt(invoiceCount)+1);
+                                                uploadInvoice.upload.setEnabled(true);
                                             }
                                             Toast.makeText(getApplicationContext(), "invoice created", Toast.LENGTH_SHORT).show();
                                         });
                                     });
                                 });
                             }
+
                         });
                     }
+                    //already exist
                     else{
                         Toast.makeText(getApplicationContext(), "Invoice number already exists", Toast.LENGTH_SHORT).show();
+                        uploadInvoice.upload.setEnabled(true);
                     }
                 }
                 @Override
@@ -234,4 +246,5 @@ public class UploadInvoiceActivity extends Activity {
         super.onSaveInstanceState(outState);
         outState.putString("imageFilePath",String.valueOf(imageFilePath));
     }
+
 }

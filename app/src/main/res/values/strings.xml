@@ -46,5 +46,6 @@
     <string name="buyer_applied">buyer_network/applied/</string>
     <string name="avail_logistics">Avail Logistics</string>
     <string name="login">Login</string>
+    <string name="email_support">or Mail us at \n vishnu@agrobuy.co</string>
 
 </resources>

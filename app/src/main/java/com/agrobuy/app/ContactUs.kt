@@ -9,6 +9,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class ContactUs : AppCompatActivity() {
@@ -27,5 +28,25 @@ class ContactUs : AppCompatActivity() {
         }, 43, 56, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
         v.text = callSpan
         v.movementMethod = LinkMovementMethod.getInstance()
+
+        // email link
+        val emailSpan = SpannableString(getString(R.string.email_support))
+        val v2 : TextView = findViewById(R.id.textView16)
+        emailSpan.setSpan(object : ClickableSpan() {
+            override fun onClick(view: View) {
+                // opening email
+                val intent = ExportLogisticsActivity.makeMailIntent(
+                    arrayOf("vishnu@agrobuy.co"), "Contact Support",
+                    null, null
+                )
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(Intent.createChooser(intent, "Choose an email client"))
+                } else {
+                    Toast.makeText(applicationContext, "Failed! Please install a email app", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }, 16, 33, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+        v2.text = emailSpan
+        v2.movementMethod = LinkMovementMethod.getInstance()
     }
 }

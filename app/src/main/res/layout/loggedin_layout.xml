@@ -36,7 +36,8 @@
                     style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@android:color/transparent"
+                    android:background="@color/teal_700"
+                    app:navigationIconTint="@color/white"
                     android:elevation="0dp"
                     app:navigationIcon="@drawable/ic_baseline_menu_24"
                     app:title="@string/app_name" />

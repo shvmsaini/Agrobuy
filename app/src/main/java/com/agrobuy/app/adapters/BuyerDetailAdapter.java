@@ -65,7 +65,7 @@ public class BuyerDetailAdapter extends RecyclerView.Adapter<BuyerDetailAdapter.
         public void bind(final BuyerObject item, final buyerOnItemClickListener listener) {
             title.setText(item.getBuyerName());
 //            subTitle.setText(item.getSubLine());
-            Glide.with(itemView.getContext()).load(item.getPicURL()).into(pic);
+            Glide.with(itemView.getContext()).load(item.getPicURL()).placeholder(R.drawable.ic_baseline_person_24).into(pic);
 
             itemView.setOnClickListener(view -> listener.onItemClick(item));
         }
