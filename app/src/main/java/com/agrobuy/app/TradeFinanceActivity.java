@@ -84,36 +84,42 @@ public class TradeFinanceActivity extends Activity {
                             Toast.makeText(this, "Wait...", Toast.LENGTH_SHORT).show();
                             //getting invoice id
                             myRef.child("invoice_id").get().addOnCompleteListener(snapshotTask -> {
-                                invoice_id = String.valueOf(snapshotTask.getResult().getValue());
-                                if(checkNotEmpty()){
-                                    //creating a map of all details
-                                    HashMap<String,String> details = new HashMap<>();
-                                    HashMap<String,Object> item = new HashMap<>();
-                                    // getting invoice from map
-                                    details.put("select_invoice",tradeFinance.invoiceSpinner.getSelectedItem().toString());
-                                    details.put("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                                    details.put("finance_type",tradeFinance.financeTypeSpinner.getSelectedItem().toString());
-                                    details.put("customer_name",tradeFinance.customerName.getText().toString());
-                                    details.put("invoice_id",invoice_id);
-                                    details.put("invoice_amount",tradeFinance.invoiceAmount.getText().toString());
-                                    details.put("phone_number",tradeFinance.phoneNumber.getText().toString());
-                                    item.put(FirebaseAuth.getInstance().getUid(),details);
-
-                                    //Changing invoice id
-                                    myRef.child("invoice_id").setValue(Integer.parseInt(invoice_id) + 1).addOnCompleteListener(task1 -> {
-                                        //putting everything in the database
-                                        database.getReference(getString(R.string.trade_finance_applied))
-                                                .child(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date())).updateChildren(item);
-                                        Log.d(TradeFinanceActivity.class.getName(),"success, " + item);
-                                        //opening email
-                                        Intent i = ExportLogisticsActivity.makeMailIntent( new String[]{"yourEmail@gmail.com"},"Trade Finance",
-                                                "Please send this mail and we will get back to you ASAP!", item);
-                                        if (i.resolveActivity(getPackageManager())!=null)
-                                            startActivityForResult(Intent.createChooser(i, "Choose an email client"), 800);
-                                        else
-                                            Toast.makeText(this,"Failed! Please install a email app",Toast.LENGTH_SHORT).show();
-                                    });
+                                if(!snapshotTask.isSuccessful()){
+                                    Toast.makeText(this, "Error getting data. Make sure your internet is stable.", Toast.LENGTH_SHORT).show();
                                 }
+                                else{
+                                    invoice_id = String.valueOf(snapshotTask.getResult().getValue());
+                                    if(checkNotEmpty()){
+                                        //creating a map of all details
+                                        HashMap<String,String> details = new HashMap<>();
+                                        HashMap<String,Object> item = new HashMap<>();
+                                        // getting invoice from map
+                                        details.put("select_invoice",tradeFinance.invoiceSpinner.getSelectedItem().toString());
+                                        details.put("email",FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                                        details.put("finance_type",tradeFinance.financeTypeSpinner.getSelectedItem().toString());
+                                        details.put("customer_name",tradeFinance.customerName.getText().toString());
+                                        details.put("invoice_id",invoice_id);
+                                        details.put("invoice_amount",tradeFinance.invoiceAmount.getText().toString());
+                                        details.put("phone_number",tradeFinance.phoneNumber.getText().toString());
+                                        item.put(FirebaseAuth.getInstance().getUid(),details);
+
+                                        //Changing invoice id
+                                        myRef.child("invoice_id").setValue(Integer.parseInt(invoice_id) + 1).addOnCompleteListener(task1 -> {
+                                            //putting everything in the database
+                                            database.getReference(getString(R.string.trade_finance_applied))
+                                                    .child(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date())).updateChildren(item);
+                                            Log.d(TradeFinanceActivity.class.getName(),"success, " + item);
+                                            //opening email
+                                            Intent i = ExportLogisticsActivity.makeMailIntent( new String[]{"yourEmail@gmail.com"},"Trade Finance",
+                                                    "Please send this mail and we will get back to you ASAP!", item);
+                                            if (i.resolveActivity(getPackageManager())!=null)
+                                                startActivityForResult(Intent.createChooser(i, "Choose an email client"), 800);
+                                            else
+                                                Toast.makeText(this,"Failed! Please install a email app",Toast.LENGTH_SHORT).show();
+                                        });
+                                    }
+                                }
+
                             });
                         });
                     }

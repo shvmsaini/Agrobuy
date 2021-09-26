@@ -64,6 +64,10 @@ public class BuyerNetworkActivity extends Activity {
                     }
                     else{
                         DataSnapshot snapshot = task.getResult();
+                        if(!snapshot.exists()){
+                            emptyView.setText("No buyers found.");
+                            return;
+                        }
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                             Map<String,Object> map = (Map<String, Object>) postSnapshot.getValue();
                             BuyerObject item = new BuyerObject(

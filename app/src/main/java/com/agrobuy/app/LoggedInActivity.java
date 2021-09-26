@@ -42,8 +42,6 @@ public class LoggedInActivity extends AppCompatActivity {
         myRef.child(currUser.getUid()).child("name").get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
                 Log.e("firebase", "Error getting data.", task.getException());
-                Toast.makeText(this, "Error getting data. Make sure your internet is stable.", Toast.LENGTH_SHORT).show();
-                
             }
             else {
                 Log.d("firebase", String.valueOf(task.getResult().getValue()));
@@ -52,6 +50,7 @@ public class LoggedInActivity extends AppCompatActivity {
 
             }
         });
+
         //navigation drawer
         loggedinLayout.topAppBar.setNavigationOnClickListener(v -> loggedinLayout.drawerLayout.openDrawer(Gravity.LEFT));
         loggedinLayout.navigationDrawer.setNavigationItemSelectedListener(item -> {
@@ -99,7 +98,7 @@ public class LoggedInActivity extends AppCompatActivity {
                     .get().addOnCompleteListener(task -> {
                 if (!task.isSuccessful()) {
                     Log.e("firebase", "Error getting data", task.getException());
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error. Make sure your internet is stable.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));
@@ -133,7 +132,7 @@ public class LoggedInActivity extends AppCompatActivity {
                     .get().addOnCompleteListener(task -> {
                 if (!task.isSuccessful()) {
                     Log.e("firebase", "Error getting data", task.getException());
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Error getting data. Make sure your internet is stable.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Log.d("firebase", String.valueOf(task.getResult().getValue()));

@@ -74,7 +74,7 @@
         <activity
             android:name=".DeliveryPartnersActivity"
             android:exported="true"
-            android:launchMode = "singleTop"/>
+            android:launchMode = "singleTask"/>
         <activity
             android:name=".ExportLogisticsActivity"
             android:exported="true"

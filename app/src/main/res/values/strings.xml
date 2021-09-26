@@ -28,8 +28,8 @@
     <string name="trade_finance_footer_message">For any queries regarding Financing, please Call/WhatsApp at +918105109480</string>
     <string name="apply">Apply</string>
     <string name="loggedin_footer">Need more assistance? Call us at +918105109480 \n We are available 24x7!</string>
-    <string name="create">Create invoice</string>
-    <string name="upload">Upload invoice</string>
+    <string name="create">Create\n invoice</string>
+    <string name="upload">Upload\n invoice</string>
     <string name="invoice_number">Invoice Number</string>
     <string name="no_file">No File Selected</string>
     <string name="upload_invoice_header">Enter the Invoice number and Upload a invoice</string>
@@ -45,5 +45,6 @@
     <string name="trade_finance_applied">trade_finance/applied/</string>
     <string name="buyer_applied">buyer_network/applied/</string>
     <string name="avail_logistics">Avail Logistics</string>
+    <string name="login">Login</string>
 
 </resources>

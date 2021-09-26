@@ -62,6 +62,10 @@ public class DeliveryPartnersActivity extends Activity {
                     }
                     else{
                         DataSnapshot snapshot = task.getResult();
+                        if(!snapshot.exists()){
+                            emptyView.setText("No delivery partners found.");
+                            return;
+                        }
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                             Map<String,Object> map = (Map<String, Object>) postSnapshot.getValue();
                             ContentObject item = new ContentObject(

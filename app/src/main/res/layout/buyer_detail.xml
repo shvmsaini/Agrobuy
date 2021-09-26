@@ -68,7 +68,7 @@
                     android:layout_centerVertical="true"
                     android:text="Contact Person Name"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/name"
@@ -100,7 +100,7 @@
                     android:layout_centerVertical="true"
                     android:text="Categories"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -135,7 +135,7 @@
                     android:layout_centerVertical="true"
                     android:text="Date of Incorporation"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -170,7 +170,7 @@
                     android:layout_centerVertical="true"
                     android:text="Importer Credit Rating"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/rating"
@@ -200,7 +200,7 @@
                     android:layout_centerVertical="true"
                     android:text="Import History"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/history"
@@ -210,8 +210,8 @@
                     android:layout_gravity="end"
                     android:layout_marginStart="8dp"
                     android:layout_toEndOf="@id/textView6"
-                    android:background="@drawable/input_background"
                     android:gravity="center"
+                    android:background="@drawable/input_background"
                     android:hint="Import History"
                     android:minHeight="32dp"
                     android:paddingStart="8dp" />
@@ -234,7 +234,7 @@
                     android:gravity="center"
                     android:text="Contact Time preference"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/timepref"
@@ -268,7 +268,7 @@
                     android:gravity="center"
                     android:text="Contact Phone Number"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/phone_number"
@@ -302,7 +302,7 @@
                     android:gravity="center"
                     android:text="Contact Personal Number"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/personal_number"
@@ -336,7 +336,7 @@
                     android:gravity="center"
                     android:text="Contact Person Email ID"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:id="@+id/email"
