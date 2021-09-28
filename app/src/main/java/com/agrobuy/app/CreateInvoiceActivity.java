@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class CreateInvoiceActivity extends Activity {
     public CreateInvoiceBinding createInvoice;
@@ -61,8 +62,8 @@ public class CreateInvoiceActivity extends Activity {
                             else{
                                 // putting invoice to database
                                 myRef.updateChildren(item, (error, ref) -> {
-                                    database.getReference("users").child(currUser.getUid()).child("invoice_count")
-                                            .get().addOnCompleteListener(task -> {
+                                    database.getReference("users" + "/" + currUser.getUid()+ "/" + "invoice_count").get()
+                                            .addOnCompleteListener(task -> {
                                         if (!task.isSuccessful()) {
                                             Log.e("firebase", "Error getting data", task.getException());
                                         }
@@ -70,7 +71,7 @@ public class CreateInvoiceActivity extends Activity {
                                             Log.d("firebase", String.valueOf(task.getResult().getValue()));
                                             //updating invoice count
                                             database.getReference("users").child(currUser.getUid()).child("invoice_count")
-                                                    .setValue(Integer.parseInt(task.getResult().getValue().toString())+1);
+                                                    .setValue(Integer.parseInt(Objects.requireNonNull(task.getResult().getValue()).toString())+1);
                                         }
                                         Toast.makeText(getApplicationContext(), "invoice created", Toast.LENGTH_SHORT).show();
                                     });

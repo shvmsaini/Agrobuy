@@ -1,5 +1,7 @@
 package com.agrobuy.app.object;
 
+import androidx.annotation.NonNull;
+
 public class Invoice {
     String invoiceNumber;
     String customerName;
@@ -56,5 +58,20 @@ public class Invoice {
 
     public String getInvoiceURL() {
         return invoiceURL;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Invoice{" +
+                "invoiceNumber='" + invoiceNumber + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", invoiceAmount='" + invoiceAmount + '\'' +
+                ", invoiceDueDate='" + invoiceDueDate + '\'' +
+                ", paymentTerms='" + paymentTerms + '\'' +
+                ", deliveryMode='" + deliveryMode + '\'' +
+                ", deliveryDestination='" + deliveryDestination + '\'' +
+                ", invoiceURL='" + invoiceURL + '\'' +
+                '}';
     }
 }

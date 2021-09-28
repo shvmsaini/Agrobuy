@@ -1,11 +1,11 @@
 package com.agrobuy.app;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -44,49 +44,53 @@ public class MyInvoicesActivity extends Activity {
         emptyView.setText("Loading...");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DividerItemDecoration itemDecorator = new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL);
-        itemDecorator.setDrawable(ContextCompat.getDrawable(recyclerView.getContext(),R.drawable.divider));
-        recyclerView.addItemDecoration(itemDecorator);
+        Drawable divider = ContextCompat.getDrawable(recyclerView.getContext(),R.drawable.divider);
+        if(divider!=null){
+            itemDecorator.setDrawable(divider);
+            recyclerView.addItemDecoration(itemDecorator);
+        }
         recyclerView.setAdapter(adapter);
 
-        database.getReference("users" + "/" + auth.getCurrentUser().getUid() + "/" + "invoices").get()
-                .addOnCompleteListener(task -> {
-                    Log.d("MyInvoices","added onCompleteListener");
-                    if(!task.isSuccessful()){
-                        emptyView.setText("Error getting invoices data.");
-                        Log.d("MyInvoices", ": Error getting invoices data");
-                        Toast.makeText(this, "Error getting invoice data", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Log.d("MyInvoices", ": Task Successful");
-                        DataSnapshot snapshot = task.getResult();
-                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                            Map<String,Object> map = (Map<String, Object>) postSnapshot.getValue();
-                            Invoice item;
-                            if(map ==null){
-                                emptyView.setText("No invoices found. Go back and create one.");
-                            }
-                            if(map.containsKey("link")){
-                              item = new Invoice(postSnapshot.getKey(),map.get("link").toString());
-                            }else{
-                                item = new Invoice(
-                                        postSnapshot.getKey(),
-                                        map.get("customer_name").toString(),
-                                        map.get("invoice_amount").toString(),
-                                        map.get("invoice_due_date").toString(),
-                                        map.get("payment_terms").toString(),
-                                        map.get("delivery_mode").toString(),
-                                        map.get("delivery_destination").toString());
-                            }
-                            Log.d(MyInvoicesActivity.class.getName(),"item added: " + item);
-                            invoiceList.add(item);
-                            adapter.notifyItemInserted(invoiceList.size()-1);
+        if(auth.getCurrentUser()!=null)
+            database.getReference("users" + "/" + auth.getCurrentUser().getUid() + "/" + "invoices").get()
+                    .addOnCompleteListener(task -> {
+                        Log.d("MyInvoices","added onCompleteListener");
+                        if(!task.isSuccessful()){
+                            emptyView.setText("Error getting invoices data.");
+                            Log.d("MyInvoices", ": Error getting invoices data");
                         }
-                        if (invoiceList.size()>0) findViewById(R.id.empty_view).setVisibility(View.GONE);
-                        else {
-                            emptyView.setText("No invoices found. Go back and create one.");
+                        else{
+                            Log.d("MyInvoices", ": Task Successful");
+                            DataSnapshot snapshot = task.getResult();
+                            for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                                Map<String,Object> map = (Map<String, Object>) postSnapshot.getValue();
+                                Invoice item;
+                                if(map ==null){
+                                    emptyView.setText(R.string.no_invoices_found);
+                                    return;
+                                }
+                                if(map.containsKey("link")){
+                                    item = new Invoice(postSnapshot.getKey(),String.valueOf(map.get("link")));
+                                }else{
+                                    item = new Invoice(
+                                            postSnapshot.getKey(),
+                                            map.get("customer_name").toString(),
+                                            map.get("invoice_amount").toString(),
+                                            map.get("invoice_due_date").toString(),
+                                            map.get("payment_terms").toString(),
+                                            map.get("delivery_mode").toString(),
+                                            map.get("delivery_destination").toString());
+                                }
+                                Log.d(MyInvoicesActivity.class.getName(),"item added: " + item.toString());
+                                invoiceList.add(item);
+                                adapter.notifyItemInserted(invoiceList.size()-1);
+                            }
+                            if (invoiceList.size()>0) findViewById(R.id.empty_view).setVisibility(View.GONE);
+                            else {
+                                emptyView.setText(R.string.no_invoices_found);
+                            }
                         }
-                    }
-                });
+                    });
 
 
     }

@@ -41,7 +41,7 @@ public class ContentDisplayAdapter extends RecyclerView.Adapter<ContentDisplayAd
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         Log.d(LOG_TAG,"bindViewHolder");
         ContentObject contentObject = mContentObjectList.get(position);
-        Glide.with(mContext).load(contentObject.getProfilePicURL()).placeholder(R.drawable.ic_baseline_person_24).into(holder.pic);
+        Glide.with(mContext).load(contentObject.getProfilePicURL()).placeholder(R.drawable.ic_baseline_person_96).into(holder.pic);
         holder.bind(contentObject,listener);
     }
 

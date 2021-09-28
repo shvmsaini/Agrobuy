@@ -61,6 +61,8 @@ public class InvoiceDisplayAdapter extends RecyclerView.Adapter<InvoiceDisplayAd
             holder.deliveryModeP.setVisibility(View.GONE);
             holder.deliveryDestinationP.setVisibility(View.GONE);
             holder.paymentTermsP.setVisibility(View.GONE);
+            //getting visibility back
+            holder.documentLinkP.setVisibility(View.VISIBLE);
         }
         else{
             holder.invoiceNumber.setText(invoice.getInvoiceNumber());
@@ -72,6 +74,13 @@ public class InvoiceDisplayAdapter extends RecyclerView.Adapter<InvoiceDisplayAd
             holder.paymentTerms.setText(invoice.getPaymentTerms());
             // hiding all other views
             holder.documentLinkP.setVisibility(View.GONE);
+            // getting visibility back
+            holder.customerNameP.setVisibility(View.VISIBLE);
+            holder.invoiceAmountP.setVisibility(View.VISIBLE);
+            holder.invoiceDueDateP.setVisibility(View.VISIBLE);
+            holder.deliveryModeP.setVisibility(View.VISIBLE);
+            holder.deliveryDestinationP.setVisibility(View.VISIBLE);
+            holder.paymentTermsP.setVisibility(View.VISIBLE);
         }
     }
 
