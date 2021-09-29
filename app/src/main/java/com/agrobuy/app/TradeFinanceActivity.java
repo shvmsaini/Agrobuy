@@ -167,6 +167,7 @@ public class TradeFinanceActivity extends Activity {
             tradeFinance.invoiceAmount.requestFocus();
             return false;
         }
+
         if(tradeFinance.phoneNumber.getText().toString().length()==0){
             Toast.makeText(getApplicationContext(), "Enter phone number", Toast.LENGTH_SHORT).show();
             tradeFinance.phoneNumber.requestFocus();

@@ -40,7 +40,7 @@ public class DeliveryPartnersActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.buyer_network);
         emptyView = findViewById(R.id.empty_view);
-        emptyView.setText("Loading...");
+        emptyView.setText(R.string.loading);
 
         adapter = new ContentDisplayAdapter(this, partnerList,
                 item ->{

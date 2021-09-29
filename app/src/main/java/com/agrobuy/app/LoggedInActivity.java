@@ -60,7 +60,6 @@ public class LoggedInActivity extends AppCompatActivity {
            v.setMargins(4,4,4,4);
         }
 
-
         //getting instances
         mAuth = FirebaseAuth.getInstance();
         currUser = mAuth.getCurrentUser();
@@ -80,41 +79,33 @@ public class LoggedInActivity extends AppCompatActivity {
         //check user authenticity
         checkUser();
 
-
         //navigation drawer
         loggedinLayout.topAppBar.setNavigationOnClickListener(v -> loggedinLayout.drawerLayout.openDrawer(Gravity.LEFT));
         loggedinLayout.navigationDrawer.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-
-                case R.id.my_invoices: {
-                    Intent intent = new Intent(this, MyInvoicesActivity.class);
-                    startActivity(intent);
-                    loggedinLayout.drawerLayout.closeDrawers();
-                    return true;
-                }
-
-                case R.id.support: {
-                    Intent intent = new Intent(this, ContactUs.class);
-                    startActivity(intent);
-                    loggedinLayout.drawerLayout.closeDrawers();
-                    return true;
-                }
-
-                case R.id.sign_out: {
-                    mAuth.signOut();
-                    finish();
-//                    closing all previous activities
-                    Intent i = new Intent(LoggedInActivity.this, LoginActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(i);
-                    loggedinLayout.drawerLayout.closeDrawers();
-                    return true;
-                }
-
-                default:
-                    return false;
+            if(item.getItemId() == R.id.my_invoices) {
+                Intent intent = new Intent(this, MyInvoicesActivity.class);
+                startActivity(intent);
+                loggedinLayout.drawerLayout.closeDrawers();
+                return true;
             }
+            if(item.getItemId() == R.id.support) {
+                Intent intent = new Intent(this, ContactUs.class);
+                startActivity(intent);
+                loggedinLayout.drawerLayout.closeDrawers();
+                return true;
+            }
+            if(item.getItemId() == R.id.sign_out) {
+                mAuth.signOut();
+                finish();
+                // closing all previous activities
+                Intent i = new Intent(LoggedInActivity.this, LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(i);
+                loggedinLayout.drawerLayout.closeDrawers();
+                return true;
+            }
+            else return false;
         });
 
         loggedinLayout.buyerNetwork.setOnClickListener(v -> {

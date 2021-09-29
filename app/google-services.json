@@ -1,63 +1,34 @@
 {
   "project_info": {
-    "project_number": "347055043748",
-    "firebase_url": "https://flashchatandroid-d2088.firebaseio.com",
-    "project_id": "flashchatandroid-d2088",
-    "storage_bucket": "flashchatandroid-d2088.appspot.com"
+    "project_number": "198540065575",
+    "firebase_url": "https://agrobuy-aac26-default-rtdb.firebaseio.com",
+    "project_id": "agrobuy-aac26",
+    "storage_bucket": "agrobuy-aac26.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:347055043748:android:bd4a9ec01666fa13ea6231",
+        "mobilesdk_app_id": "1:198540065575:android:6f709f46e2d93b1c904702",
         "android_client_info": {
           "package_name": "com.agrobuy.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "347055043748-7du6nj18de92lh0090a7rgt8q11j2ki3.apps.googleusercontent.com",
+          "client_id": "198540065575-3qmmak8fupk4o9ahire59672f56l88sm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBF5wjgyhPtL81iWvJtLze7DT99goeKX-I"
+          "current_key": "AIzaSyDyvKl0qeBW9aSleyDPNXt0U3xAvai_gg4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "347055043748-7du6nj18de92lh0090a7rgt8q11j2ki3.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:347055043748:android:b67d32ad105b8118ea6231",
-        "android_client_info": {
-          "package_name": "com.prochat.flashchatnewfirebase"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "347055043748-7du6nj18de92lh0090a7rgt8q11j2ki3.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBF5wjgyhPtL81iWvJtLze7DT99goeKX-I"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "347055043748-7du6nj18de92lh0090a7rgt8q11j2ki3.apps.googleusercontent.com",
+              "client_id": "198540065575-3qmmak8fupk4o9ahire59672f56l88sm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

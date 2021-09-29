@@ -51,6 +51,6 @@
     <string name="no_delivery_partners">No delivery partners found.</string>
     <string name="no_buyers">No buyers found.</string>
     <string name="error_getting_buyers">Error getting buyers data</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
 
 </resources>
