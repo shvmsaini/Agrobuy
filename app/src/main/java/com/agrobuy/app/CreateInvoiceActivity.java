@@ -49,6 +49,9 @@ public class CreateInvoiceActivity extends Activity {
                 details.put("delivery_destination" ,createInvoice.deliveryDestination.getText().toString());
                 item.put(createInvoice.invoiceNumber.getText().toString(),details);
             }
+            else{
+                return;
+            }
 
             // Checking if invoice already exist or not
             FirebaseDatabase.getInstance().getReference("users" + "/" + currUser.getUid() +  "/" + "invoices" +  "/"
@@ -78,7 +81,6 @@ public class CreateInvoiceActivity extends Activity {
                                 });
                             }
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
@@ -102,14 +104,13 @@ public class CreateInvoiceActivity extends Activity {
             createInvoice.invoiceNumber.requestFocus();
             return false;
         }
-
         if(createInvoice.customerName.getText().toString().length()==0){
             Toast.makeText(getApplicationContext(), "Enter Customer Name", Toast.LENGTH_SHORT).show();
             createInvoice.customerName.requestFocus();
             return false;
         }
         if(createInvoice.invoiceAmount.getText().toString().length()==0){
-            Toast.makeText(getApplicationContext(), "Enter invoiceAmount", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Enter Invoice amount", Toast.LENGTH_SHORT).show();
             createInvoice.invoiceAmount.requestFocus();
             return false;
         }

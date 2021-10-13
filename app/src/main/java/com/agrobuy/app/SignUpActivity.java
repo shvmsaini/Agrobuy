@@ -74,10 +74,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if(pass.length()<8){
                     signupLayout.passwordForSignup.requestFocus();
                     Toast.makeText(getApplicationContext(),"Password must be more than 8 digit",Toast.LENGTH_LONG).show();
+                    return;
                 }
                 if(!LoginActivity.isValidEmail(signupLayout.emailForSignup.getText().toString())){
                     signupLayout.emailForSignup.requestFocus();
                     Toast.makeText(getApplicationContext(),"Please enter a valid email",Toast.LENGTH_LONG).show();
+                    return;
                 }
                 else{
                     auth.createUserWithEmailAndPassword(email,pass)
@@ -100,31 +102,6 @@ public class SignUpActivity extends AppCompatActivity {
                                     finish();
                                 }
                             });
-
-//                    // email link authentication
-//                    ActionCodeSettings actionCodeSettings = ActionCodeSettings.newBuilder()
-//                        // URL you want to redirect back to. The domain (www.example.com) for this
-//                        // URL must be whitelisted in the Firebase Console.
-//                        .setUrl("https://www.example.com/finishSignUp?cartId=1234")
-//                        // This must be true
-//                        .setHandleCodeInApp(false)
-//                        .setAndroidPackageName(
-//                                "com.agrobuy.app",
-//                                true, /* installIfNotAvailable */
-//                                "1"    /* minimumVersion */)
-//                        .build();
-//                    FirebaseAuth auth = FirebaseAuth.getInstance();
-//                    auth.sendSignInLinkToEmail(email, actionCodeSettings)
-//                            .addOnCompleteListener(task -> {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(SignUpActivity.class.getName(), "Email sent.");
-//                                }
-//                                else{
-//                                    Log.d(SignUpActivity.class.getName(), "Email not sent.");
-//                                }
-//                            });
-
-
                 }
             }
             else{

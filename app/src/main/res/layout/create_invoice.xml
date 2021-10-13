@@ -35,8 +35,8 @@
         android:id="@+id/create_invoice_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topAppBar"
         android:layout_above="@id/apply"
+        android:layout_below="@id/topAppBar"
         android:fadeScrollbars="false"
         android:isScrollContainer="true"
         android:scrollbars="vertical">
@@ -53,7 +53,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:minHeight="45dp"
-
                 android:orientation="horizontal">
 
                 <TextView
@@ -107,7 +106,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/invoice_amount"
+                    android:id="@+id/customer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -140,10 +139,9 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/customer_name"
+                    android:id="@+id/invoice_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="end"
@@ -153,6 +151,7 @@
                     android:gravity="center"
                     android:hint="Amount in USD"
                     android:inputType="numberDecimal"
+                    android:minHeight="40dp"
                     android:paddingStart="8dp" />
             </RelativeLayout>
 
@@ -178,7 +177,6 @@
                     android:id="@+id/date_picker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="end"
@@ -188,6 +186,7 @@
                     android:gravity="center"
                     android:hint="DD/MM/YYYY"
                     android:inputType="date"
+                    android:minHeight="40dp"
                     android:paddingStart="8dp" />
             </RelativeLayout>
 
@@ -219,7 +218,6 @@
                     android:id="@+id/terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="end"
@@ -228,6 +226,7 @@
                     android:background="@drawable/input_background"
                     android:gravity="center"
                     android:hint="Enter terms"
+                    android:minHeight="40dp"
                     android:paddingStart="8dp" />
             </RelativeLayout>
 
@@ -254,7 +253,6 @@
                     android:id="@+id/delivery_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="end"
@@ -263,6 +261,7 @@
                     android:background="@drawable/input_background"
                     android:gravity="center"
                     android:hint="Air/Sea/Road"
+                    android:minHeight="40dp"
                     android:paddingStart="8dp" />
             </RelativeLayout>
 
@@ -288,7 +287,6 @@
                     android:id="@+id/delivery_destination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minHeight="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="end"
@@ -297,6 +295,7 @@
                     android:background="@drawable/input_background"
                     android:gravity="center"
                     android:hint="Air/Sea/Road"
+                    android:minHeight="40dp"
                     android:paddingStart="8dp" />
             </RelativeLayout>
 
